@@ -68,7 +68,7 @@ cola<T>::cola(){
 
 template <typename T>
 void cola<T>::alta(T dato){
-    nodo<T> nuevo = new nodo(dato);
+    nodo<T>* nuevo = new nodo(dato);
 
     if (!this->primero())
         this->primer_nodo = nuevo;
@@ -82,7 +82,7 @@ void cola<T>::alta(T dato){
 template <typename T>
 T cola<T>::baja(){
     if (this->cantidad_datos == 0)
-        throw cola_exception;
+        throw cola_exception();
 
     // Guardamos nodo siguiente y resultado
     nodo<T>* siguiente = this->primer_nodo->obtener_siguiente();

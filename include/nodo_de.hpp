@@ -38,4 +38,42 @@ public:
     ~nodo_de();
 };
 
+template <typename T>
+nodo_de<T>::nodo_de(T dato){
+    this->dato = dato;
+    this->anterior = nullptr;
+    this->siguiente = nullptr;
+}
+
+template <typename T>
+nodo_de<T>::nodo_de(T dato,nodo_de<T>* anterior, nodo_de<T>* siguiente){
+    this->dato = dato;
+    this->anterior = anterior;
+    this->siguiente = siguiente;
+}
+
+template <typename T>
+nodo_de<T>* nodo_de<T>::obtener_anterior(){
+    return this->anterior;
+}
+
+template <typename T>
+nodo_de<T>* nodo_de<T>::obtener_siguiente(){
+    return this->siguiente;
+}
+
+template <typename T>
+void nodo_de<T>::cambiar_anterior(nodo_de<T>* nuevo){
+    this->anterior = nuevo;
+}
+
+template <typename T>
+void nodo_de<T>::cambiar_siguiente(nodo_de<T>* nuevo){
+    this->siguiente = nuevo;
+}
+template <typename T>
+T nodo_de<T>::obtener_dato(){
+    return this->dato;
+}
+
 #endif
