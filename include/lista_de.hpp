@@ -98,4 +98,26 @@ public:
     ~lista_de();
 };
 
+template <typename T>
+nodo_de<T>* lista_de<T>::obtener_nodo(size_t indice){
+
+}
+
+template <typename T>
+lista_de<T>::lista_de(){
+    this->cantidad_datos = 0;
+    this->primer_nodo = nullptr;
+    this->ultimo_nodo = nullptr;
+
+    this->cursor = nullptr;
+    this->indice_cursor = 0;
+}
+
+template <typename T>
+void lista_de<T>::alta(T dato){
+    return this->alta(dato,this->cantidad_datos);
+}
+
+
+
 #endif
