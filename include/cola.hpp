@@ -116,6 +116,6 @@ bool cola<T>::vacio(){
 }
 
 template <typename T>
-bool cola<T>::~cola(){}
+cola<T>::~cola(){}
 
 #endif
