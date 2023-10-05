@@ -58,4 +58,17 @@ public:
     ~cola();
 };
 
+
+template <typename T>
+cola<T>::cola(){
+    nodo<T>* primer_nodo = nullptr;
+    nodo<T>* ultimo_nodo = nullptr;
+    size_t cantidad_datos = 0;
+}
+
+template <typename T>
+void cola<T>::alta(T dato){
+    
+}
+
 #endif
