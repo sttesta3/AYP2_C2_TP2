@@ -256,6 +256,9 @@ bool lista_de<T>::vacio(){
 }
 
 template <typename T>
-lista_de<T>::~lista_de(){}
+lista_de<T>::~lista_de(){
+    while (this->tamanio() > 0)
+        this->baja(this->cantidad_datos);    
+}
 
 #endif

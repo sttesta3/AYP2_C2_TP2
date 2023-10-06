@@ -3,7 +3,7 @@
 
 #include <exception>
 #include "nodo.hpp"
-
+#include <iostream>
 class cola_exception : public std::exception {
     // Excepcion especifica y exclusivamente para errores dentro de la cola.
     // Usar de la forma "throw cola_exception();" cuando una precondicion no se cumpla.
@@ -69,11 +69,13 @@ cola<T>::cola(){
 template <typename T>
 void cola<T>::alta(T dato){
     nodo<T>* nuevo = new nodo(dato);
-
-    if (!this->primero())
+    
+    if ( this->vacio() ){
         this->primer_nodo = nuevo;
-    else
+    }
+    else{
         this->ultimo_nodo->cambiar_siguiente(nuevo);
+    }
 
     this->ultimo_nodo = nuevo;
     this->cantidad_datos++;
@@ -81,27 +83,32 @@ void cola<T>::alta(T dato){
 
 template <typename T>
 T cola<T>::baja(){
-    if (this->cantidad_datos == 0)
+    if (this->vacio())
         throw cola_exception();
 
-    // Guardamos nodo siguiente y resultado
-    nodo<T>* siguiente = this->primer_nodo->obtener_siguiente();
-    T resultado = this->primer_nodo->obtener_dato();
+    // Guardamos nodo a eliminar y que pase el siguiente
+    nodo<T>* eliminar = this->primer_nodo;
+    this->primer_nodo = this->primer_nodo->obtener_siguiente();
 
-    // Eliminamos primero, y el siguiente pasa a ser primero
-    delete this->primer_nodo;
-    this->primer_nodo = siguiente;
+    T resultado = eliminar->obtener_dato();
+    delete eliminar;
     this->cantidad_datos--;
 
     return resultado;
 }
 template <typename T>
 T cola<T>::primero(){
+    if (this->vacio())
+        throw cola_exception();
     return this->primer_nodo->obtener_dato();
 }
 
 template <typename T>
 T cola<T>::ultimo(){
+    std::cout << "PRE Ultimo" << std::endl;
+    if (this->vacio())
+        throw cola_exception();
+
     return this->ultimo_nodo->obtener_dato();
 }
 
@@ -116,6 +123,9 @@ bool cola<T>::vacio(){
 }
 
 template <typename T>
-cola<T>::~cola(){}
+cola<T>::~cola(){
+    while (!this->vacio())
+        this->baja();
+}
 
 #endif
