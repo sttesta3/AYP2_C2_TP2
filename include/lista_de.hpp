@@ -100,12 +100,26 @@ public:
 
 template <typename T>
 nodo_de<T>* lista_de<T>::obtener_nodo(size_t indice){
-
+    if (indice >= this->cantidad_datos)
+        throw lista_exception();
+    
+    // Si esta mas cerca del principio, iniciar desde ahi. Caso contrario desde el final
+    if (indice <= this->cantidad_datos / 2){
+        this->cursor = this->primer_nodo;
+        for (int i = 0; i < indice; i++)
+            this->cursor = this->cursor->obtener_siguiente();
+    }
+    else{
+        this->cursor = this->ultimo_nodo;
+        for (int i = this->cantidad_datos - 1; i > indice; i--)
+            this->cursor = this->cursor->obtener_anterior();
+    }
+    return cursor;
 }
 
 template <typename T>
 lista_de<T>::lista_de(){
-    this->cantidad_datos = 0;
+    this->cantidad_datos = -1;
     this->primer_nodo = nullptr;
     this->ultimo_nodo = nullptr;
 
@@ -118,6 +132,130 @@ void lista_de<T>::alta(T dato){
     return this->alta(dato,this->cantidad_datos);
 }
 
+template <typename T>
+T lista_de<T>::baja(){
+    return this->baja(this->cantidad_datos - 1);
+}
 
+template <typename T>
+void lista_de<T>::alta(T dato, size_t indice){
+    if (indice > this->cantidad_datos)
+        throw lista_exception();
+
+    if (indice == this->cantidad_datos){     // Ultimo Nodo
+        nodo_de<T>* nuevo = new nodo_de(dato,this->ultimo_nodo,this->ultimo_nodo->obtener_siguiente());
+        this->ultimo_nodo->cambiar_siguiente(nuevo);
+        this->ultimo_nodo = nuevo;
+    }
+    else {
+        nodo_de<T>* posicion = this->obtener_nodo(indice);
+        nodo_de<T>* nuevo = new nodo_de(dato,posicion->obtener_anterior(),posicion);
+        nuevo->obtener_siguiente()->cambiar_anterior(nuevo);
+
+        if (nuevo->obtener_anterior()) 
+            nuevo->obtener_anterior()->cambiar_siguiente(nuevo);
+        else
+            this->primer_nodo = nuevo;
+    }
+
+    this->cantidad_datos++;
+}
+
+template <typename T>
+T lista_de<T>::baja(size_t indice){
+    if (indice >= this->cantidad_datos)
+        throw lista_exception();
+
+    nodo_de<T>* eliminar;
+    if (indice == this->cantidad_datos - 1){
+        eliminar = this->ultimo_nodo;
+        this->ultimo_nodo = this->ultimo_nodo->obtener_anterior();
+        this->ultimo_nodo->cambiar_siguiente(nullptr);
+    }
+    else{
+        eliminar = this->obtener_nodo(indice);
+        eliminar->obtener_siguiente()->cambiar_anterior(eliminar->obtener_anterior());
+        if (eliminar->obtener_anterior())          
+            eliminar->obtener_anterior()->cambiar_siguiente(eliminar->obtener_siguiente());
+        else
+            this->primer_nodo = eliminar->obtener_siguiente();
+    }
+
+    if (this->cursor == eliminar){
+        this->cursor = this->primer_nodo;
+        this->indice_cursor = 0;
+    }
+
+    T resultado = eliminar->obtener_dato();
+    delete eliminar;
+    this->cantidad_datos--;
+    return resultado;
+}
+
+template <typename T>
+T lista_de<T>::primero(){
+    return this->primer_nodo->obtener_dato();
+}
+
+template <typename T>
+T lista_de<T>::ultimo(){
+    return this->ultimo_nodo->obtener_dato();
+}
+
+template <typename T>
+T lista_de<T>::elemento(size_t indice){
+    if (indice > this->cantidad_datos)
+        throw lista_exception();
+
+    return this->obtener_nodo(indice)->obtener_dato();
+}
+
+template <typename T>
+bool lista_de<T>::puede_avanzar(){
+    return (this->cursor);
+}
+
+template <typename T>
+T lista_de<T>::avanzar(bool siguiente){
+    if (!this->puede_avanzar())
+        throw lista_exception();
+
+    nodo_de<T>* actual = cursor;
+    if (siguiente)
+        cursor = cursor->obtener_siguiente();
+    else
+        cursor = cursor->obtener_anterior();
+
+    return actual->obtener_dato();
+}
+
+template <typename T>
+void lista_de<T>::reiniciar_cursor(bool principio){
+    if (this->cantidad_datos == 0){
+        this->indice_cursor = -1;
+        cursor = nullptr;
+    }
+    else if (principio){
+        this->indice_cursor = 0;
+        cursor = this->primer_nodo;
+    }
+    else {
+        this->indice_cursor = this->cantidad_datos - 1;
+        cursor = this->ultimo_nodo;
+    }
+}
+
+template <typename T>
+size_t lista_de<T>::tamanio(){
+    return this->cantidad_datos;
+}
+
+template <typename T>
+bool lista_de<T>::vacio(){
+    return (this->cantidad_datos == 0);
+}
+
+template <typename T>
+lista_de<T>::~lista_de(){}
 
 #endif

@@ -71,9 +71,13 @@ template <typename T>
 void nodo_de<T>::cambiar_siguiente(nodo_de<T>* nuevo){
     this->siguiente = nuevo;
 }
+
 template <typename T>
 T nodo_de<T>::obtener_dato(){
     return this->dato;
 }
+
+template <typename T>
+nodo_de<T>::~nodo_de(){}
 
 #endif
