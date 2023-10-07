@@ -17,9 +17,9 @@ class cola_exception : public std::exception {
 template<typename T>
 class cola {
 private:
-    nodo<T>* primer_nodo;
-    nodo<T>* ultimo_nodo;
-    size_t cantidad_datos;
+    nodo<T>* primer_nodo = nullptr;
+    nodo<T>* ultimo_nodo = nullptr;
+    size_t cantidad_datos = 0;
 public:
     // Constructor.
     cola();
@@ -60,11 +60,7 @@ public:
 
 
 template <typename T>
-cola<T>::cola(){
-    nodo<T>* primer_nodo = nullptr;
-    nodo<T>* ultimo_nodo = nullptr;
-    size_t cantidad_datos = 0;
-}
+cola<T>::cola(){}
 
 template <typename T>
 void cola<T>::alta(T dato){
@@ -105,7 +101,6 @@ T cola<T>::primero(){
 
 template <typename T>
 T cola<T>::ultimo(){
-    std::cout << "PRE Ultimo" << std::endl;
     if (this->vacio())
         throw cola_exception();
 
