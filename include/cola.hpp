@@ -58,7 +58,6 @@ public:
     ~cola();
 };
 
-
 template <typename T>
 cola<T>::cola(){}
 
