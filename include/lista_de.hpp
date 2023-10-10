@@ -100,7 +100,7 @@ public:
 
 template <typename T>
 nodo_de<T>* lista_de<T>::obtener_nodo(size_t indice){
-    if (indice >= this->cantidad_datos)
+    if (indice > this->cantidad_datos)
         throw lista_exception();
     
     // Si esta mas cerca del principio, iniciar desde ahi. Caso contrario desde el final
@@ -135,54 +135,50 @@ void lista_de<T>::alta(T dato, size_t indice){
     if (indice > this->tamanio())
         throw lista_exception();
 
-    if (this->tamanio() == 0){          // Primer Nodo.     null <- Nodo -> null
-        nodo_de<T>* nuevo = new nodo_de(dato,this->primer_nodo,this->ultimo_nodo);
+    nodo_de<T>* nuevo;
+    if (this->vacio()){                             // Primer Nodo. Lista vacia
+        nuevo = new nodo_de(dato,this->primer_nodo,this->ultimo_nodo);
         this->primer_nodo = nuevo;
         this->ultimo_nodo = nuevo;
     }
-    else if (indice == this->cantidad_datos){     // Ultimo Nodo
-        nodo_de<T>* nuevo = new nodo_de(dato,this->ultimo_nodo,this->ultimo_nodo->obtener_siguiente());
-        this->ultimo_nodo->cambiar_siguiente(nuevo);
+    else if (indice == 0){                          // Primer nodo. Lista no vacia
+        nuevo = new nodo_de(dato,this->primer_nodo,this->ultimo_nodo);
+        this->primer_nodo = nuevo;
+    }
+    else if (indice == this->cantidad_datos){       // Ultimo Nodo
+        nuevo = new nodo_de(dato,this->ultimo_nodo,this->ultimo_nodo->obtener_siguiente());
         this->ultimo_nodo = nuevo;
     }
     else {
         nodo_de<T>* posicion = this->obtener_nodo(indice);
-        nodo_de<T>* nuevo = new nodo_de(dato,posicion->obtener_anterior(),posicion);
+        nuevo = new nodo_de(dato,posicion->obtener_anterior(),posicion);
+    }
+
+    // Re asignacion de punteros
+    if (nuevo->obtener_siguiente())
         nuevo->obtener_siguiente()->cambiar_anterior(nuevo);
 
-        if (nuevo->obtener_anterior()) 
-            nuevo->obtener_anterior()->cambiar_siguiente(nuevo);
-        else
-            this->primer_nodo = nuevo;
-    }
+    if (nuevo->obtener_anterior())
+        nuevo->obtener_anterior()->cambiar_siguiente(nuevo);
 
     this->cantidad_datos++;
 }
 
 template <typename T>
 T lista_de<T>::baja(size_t indice){
-    if (indice >= this->tamanio())
+    if (indice > this->tamanio())
         throw lista_exception();
 
-    nodo_de<T>* eliminar;
-    if (this->tamanio() == 1){
-        eliminar = this->ultimo_nodo;
-        this->primer_nodo = nullptr;
-        this->ultimo_nodo = nullptr;
-    }
-    else if (indice == this->cantidad_datos - 1){
-        eliminar = this->ultimo_nodo;
-        this->ultimo_nodo = this->ultimo_nodo->obtener_anterior();
-        this->ultimo_nodo->cambiar_siguiente(nullptr);
-    }
-    else{
-        eliminar = this->obtener_nodo(indice);
+    nodo_de<T>* eliminar = this->obtener_nodo(indice);
+    if (eliminar->obtener_siguiente())
         eliminar->obtener_siguiente()->cambiar_anterior(eliminar->obtener_anterior());
-        if (eliminar->obtener_anterior())          
-            eliminar->obtener_anterior()->cambiar_siguiente(eliminar->obtener_siguiente());
-        else
-            this->primer_nodo = eliminar->obtener_siguiente();
-    }
+    else
+        this->ultimo_nodo = eliminar->obtener_anterior();
+
+    if (eliminar->obtener_anterior())
+        eliminar->obtener_anterior()->cambiar_siguiente(eliminar->obtener_siguiente());
+    else
+        this->primer_nodo = eliminar->obtener_siguiente();
 
     if (this->cursor == eliminar){
         this->cursor = this->primer_nodo;
