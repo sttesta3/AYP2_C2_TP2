@@ -119,7 +119,7 @@ lista_de<T>::lista_de(){}
 
 template <typename T>
 void lista_de<T>::alta(T dato){
-    size_t indice = (this->vacio()) ? 0 : this->tamanio() - 1;
+    size_t indice = (this->vacio()) ? 0 : this->tamanio();
     return this->alta(dato,indice);
 }
 
@@ -139,7 +139,6 @@ void lista_de<T>::alta(T dato, size_t indice){
         nuevo = new nodo_de(dato,this->primer_nodo,this->ultimo_nodo);
         this->primer_nodo = nuevo;
         this->ultimo_nodo = nuevo;
-        this->reiniciar_cursor(true);
     }
     else if (indice == 0) {
         nuevo = new nodo_de(dato,this->primer_nodo->obtener_anterior(),this->primer_nodo);
@@ -157,6 +156,9 @@ void lista_de<T>::alta(T dato, size_t indice){
         nuevo->obtener_siguiente()->cambiar_anterior(nuevo);
         nuevo->obtener_anterior()->cambiar_siguiente(nuevo);
     }
+
+    if (this->vacio())
+        this->reiniciar_cursor(true);
 
     this->cantidad_datos += 1;
 }
@@ -178,8 +180,8 @@ T lista_de<T>::baja(size_t indice){
         this->primer_nodo = eliminar->obtener_siguiente();
 
     if (this->cursor == eliminar){
-        this->cursor = this->primer_nodo;
-        this->indice_cursor = 0;
+        this->cursor = nullptr;
+        this->indice_cursor = -1;
     }
 
     T resultado = eliminar->obtener_dato();
@@ -231,17 +233,17 @@ T lista_de<T>::avanzar(bool siguiente){
 
 template <typename T>
 void lista_de<T>::reiniciar_cursor(bool principio){
-    if (this->cantidad_datos == 0){
+    if (this->tamanio() == 0){
+        this->cursor = nullptr;
         this->indice_cursor = -1;
-        cursor = nullptr;
     }
     else if (principio){
         this->indice_cursor = 0;
-        cursor = this->primer_nodo;
+        this->cursor = this->primer_nodo;
     }
     else {
         this->indice_cursor = (int)this->cantidad_datos - 1;
-        cursor = this->ultimo_nodo;
+        this->cursor = this->ultimo_nodo;
     }
 }
 
