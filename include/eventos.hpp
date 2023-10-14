@@ -8,7 +8,7 @@
 
 class Eventos {
     private:
-        cola <evento> eventos = cola <evento> ();
+        cola <evento> eventos;
         std::string perfil = "INDETERMINADO";
 
     public:
