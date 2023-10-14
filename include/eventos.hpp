@@ -6,7 +6,7 @@
 
 class Eventos {
     private:
-        cola<evento> eventos = cola<evento>();
+        Cola<evento> eventos = Cola<evento>();
         std::string perfil = "INDETERMINADO";
 
     public:

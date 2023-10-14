@@ -7,7 +7,7 @@
 
 class Inventario {
     private:
-        lista_de <item> inventario = lista_de <item> ();
+        Lista_de <item> inventario = Lista_de <item> ();
 
     public:
         Inventario() = default;

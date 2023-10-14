@@ -1,0 +1,3 @@
+/home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/build/CMakeFiles/ayp2_plantilla_tp2_2c2023.dir
+/home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/build/CMakeFiles/edit_cache.dir
+/home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/build/CMakeFiles/rebuild_cache.dir
