@@ -59,9 +59,8 @@ void Menu::juego(void){
 
 void Menu::interaccion_inventario(void){
     // LOOP DE ITERACION
-    bool repetir = false;
+    bool repetir = true;
     do {
-        repetir = false;
         this->solicitar_entrada("INVENTARIO> Accion sobre el inventario: ");
 
         if (this->entrada_usuario == "ALTA")
@@ -75,21 +74,21 @@ void Menu::interaccion_inventario(void){
             std::cout << " * BAJA: Dar de baja Item de inventario" << std::endl;
             std::cout << " * CONSULTA: Mostrar inventario" << std::endl;
             std::cout << " * SALIR: Salir de submenu de manejo de inventario\n" << std::endl;
-            repetir = true;
         }
         else if (this->entrada_usuario != "SALIR"){
             std::cout << " - Input invalido, favor reingresar" << std::endl;
             std::cout << " - Ingrese 'AYUDA' para ver opciones del sub-menu\n" << std::endl;
-            repetir = true;
         }
+        else
+            repetir = false;
+
     } while (repetir);
 }
 
 void Menu::interaccion_destino(void){
     // LOOP DE ITERACION
-    bool repetir = false;    
+    bool repetir = true;    
     do {
-        repetir = false;
         this->solicitar_entrada("DESTINO> Accion sobre el destino: ");
         if (this->entrada_usuario == "AGREGAR_EVENTO")
             this->agregar_evento();
@@ -99,16 +98,16 @@ void Menu::interaccion_destino(void){
             this->mostrar_suceso();
         else if (this->entrada_usuario == "AYUDA"){
             std::cout << " * AGREGAR_EVENTO: Agregar evento de usuario" << std::endl;
-            std::cout << " * DEFINIR DESTINO: Definir perfil de usuario" << std::endl;
-            std::cout << " * MOSTRAR SUCESO: Mostrar suceso segun perfil de usuario" << std::endl;
+            std::cout << " * DEFINIR_DESTINO: Definir perfil de usuario" << std::endl;
+            std::cout << " * MOSTRAR_SUCESO: Mostrar suceso segun perfil de usuario" << std::endl;
             std::cout << " * SALIR: Salir de submenu de manejo de destino\n" << std::endl;
-            repetir = true;
         }
         else if (this->entrada_usuario != "SALIR"){
             std::cout << " - Input invalido, favor reingresar" << std::endl;
             std::cout << " - Ingrese 'AYUDA' para ver opciones del sub-menu\n" << std::endl;
-            repetir = true;
         }
+        else
+            repetir = false;
     } while (repetir);
 }
 
@@ -127,25 +126,26 @@ void Menu::definir_destino(){
     if (perfil == "INDETERMINADO")
         std::cout << "No se pudo determinar el perfil del jugador" << std::endl;
     else
-        std::cout << "Destino definido. El jugador es: " << perfil << std::endl;
+        std::cout << "Destino definido. El jugador es: " << perfil << "\n"<< std::endl;
 }
 
 void Menu::mostrar_suceso(){
     std::string perfil = this->eventos.mostrar_destino();
     if (perfil == "DESORIENTADO")
-        std::cout << "Aumento de factores ambientales" << std::endl;
+        std::cout << "Aumento de factores ambientales\n" << std::endl;
     else if (perfil == "PRECAVIDO")
-        std::cout << "Aumento en la cantidad de enemigos" << std::endl;
+        std::cout << "Aumento en la cantidad de enemigos\n" << std::endl;
     else if (perfil == "ASUSTADO")
-        std::cout << "Evento Pyramid Head adelantado" << std::endl;
+        std::cout << "Evento Pyramid Head adelantado\n" << std::endl;
     else
-        std::cout << "Comportamiento aún no definido" << std::endl;
+        std::cout << "Comportamiento aún no definido\n" << std::endl;
 }
 
 void Menu::solicitar_evento(){
     this->solicitar_entrada("Evento experimentado: ");
     while (this->entrada_usuario != ACCION_APERTURA_MAPA && this->entrada_usuario != ACCION_GUARDADO){
-        std::cout << "Entrada invalida. Favor reingresar" << std::endl;
+        std::cout << " - Entrada invalida. Favor reingresar" << std::endl;
+        std::cout << " - Eventos programados: " << ACCION_APERTURA_MAPA << " y " << ACCION_GUARDADO << "\n" << std::endl;
         this->solicitar_entrada("Evento experimentado: ");
     }
 }
@@ -196,42 +196,12 @@ void Menu::solicitar_entrada(std::string mensaje){
     std::cout << std::endl;
 }
 
-bool Menu::procesar_linea(std::string linea, std::string &nombre, std::string &tipo){
-    bool resultado = true;
-    size_t i = 0;
-    size_t words = 0;
-
-    while ( ( linea[i] != '\0' && linea[i] != '\n' ) && words < 2){
-
-        if ( linea[i] != ',')
-            (words == 0) ? nombre += linea[i] : tipo += linea[i];
-        else{
-            (words == 0) ? nombre += '\0' : tipo += '\0';
-
-            words++;
-        }
-        i++;
-    }
-
-    if (words == 0 || words >= 2){
-        std::cout << "ERROR: Linea mal formateada (se descarta la linea)" << std::endl;
-        std::cout << "Linea invalida: " << linea << "\n" <<std::endl;
-        resultado = false;
-    }
-    else if ((tipo != TIPO_CURATIVO) && (tipo != TIPO_MUNICION) && (tipo != TIPO_PUZZLE)){
-        std::cout << "ERROR: Tipo de item invalido (se descarta la linea)" << std::endl;
-        std::cout << "Linea invalida: " << linea << "\n" << std::endl;
-        resultado = false;
-    }
-    
-    return resultado;
-}
-
 std::string Menu::solicitar_tipo_item(){
     this->solicitar_entrada("Tipo del item: ");
 
     while( !( (this->entrada_usuario == TIPO_CURATIVO) || (this->entrada_usuario == TIPO_MUNICION) || (this->entrada_usuario == TIPO_PUZZLE) )){
-        std::cout << "Entrada invalida, favor reingresar" << std::endl;
+        std::cout << " - Entrada invalida, favor reingresar" << std::endl;
+        std::cout << " - Tipo de item existentes: " << TIPO_CURATIVO << ", " << TIPO_MUNICION << " y " << TIPO_PUZZLE << "\n" << std::endl;
         this->solicitar_entrada("Tipo del item: ");
     }   
 
@@ -273,6 +243,37 @@ void Menu::solicitar_forzado(size_t indice){
         std::cout << "Entrada invalida. Favor reingresar" << std::endl;
         this->solicitar_entrada(mensaje);
     }
+}
+
+bool Menu::procesar_linea(std::string linea, std::string &nombre, std::string &tipo){
+    bool resultado = true;
+    size_t i = 0;
+    size_t words = 0;
+
+    while ( ( linea[i] != '\0' && linea[i] != '\n' ) && words < 2){
+
+        if ( linea[i] != ',')
+            (words == 0) ? nombre += linea[i] : tipo += linea[i];
+        else{
+            (words == 0) ? nombre += '\0' : tipo += '\0';
+
+            words++;
+        }
+        i++;
+    }
+
+    if (words == 0 || words >= 2){
+        std::cout << "ERROR: Linea mal formateada (se descarta la linea)" << std::endl;
+        std::cout << "Linea invalida: " << linea << "\n" <<std::endl;
+        resultado = false;
+    }
+    else if ((tipo != TIPO_CURATIVO) && (tipo != TIPO_MUNICION) && (tipo != TIPO_PUZZLE)){
+        std::cout << "ERROR: Tipo de item invalido (se descarta la linea)" << std::endl;
+        std::cout << "Linea invalida: " << linea << "\n" << std::endl;
+        resultado = false;
+    }
+    
+    return resultado;
 }
 
 //.........................................................................................
