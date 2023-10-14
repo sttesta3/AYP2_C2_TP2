@@ -1,5 +1,12 @@
 #include "Menu.hpp"
 
+std::string ruta_entrada = "";
+std::string ruta_salida = "";
+const size_t TAMANIO_MAXIMO = 15;
+const size_t CARGA = 0;
+const size_t GUARDADO = 1;
+const size_t SOBREESCRITURA = 2;
+
 Menu::Menu(){
     this->ValidarArchivoPredefinido(true);
     this->ValidarArchivoPredefinido(false);
@@ -30,17 +37,45 @@ void
 Menu::Juego(void){
     // LOOP DE ITERACION
     while (this->entrada_usuario.compare("SALIR") ){
-        this->SolicitarEntradaUsuario("Accion sobre el inventario: ");
+        this->SolicitarEntradaUsuario("Operar sobre inventario/destino: ");
 
-        if (this->entrada_usuario == "ALTA")
-            this->Alta();
-        else if (this->entrada_usuario == "BAJA")
-            this->Baja();
-        else if (this->entrada_usuario == "CONSULTA")
-            this->Consulta();
+        if (this->entrada_usuario == "DESTINO")
+            this->InteraccionDestino();
+        else if (this->entrada_usuario == "INVENTARIO")
+            this->InteraccionInventario();
         else
             std::cout << "Input invalido, favor reingresar\n" << std::endl;
     }
+}
+
+void
+Menu::InteraccionInventario(void){
+    // LOOP DE ITERACION
+    this->SolicitarEntradaUsuario("Accion sobre el inventario: ");
+
+    if (this->entrada_usuario == "ALTA")
+        this->Alta();
+    else if (this->entrada_usuario == "BAJA")
+        this->Baja();
+    else if (this->entrada_usuario == "CONSULTA")
+        this->Consulta();
+    else
+        std::cout << "Input invalido, favor reingresar\n" << std::endl;
+}
+
+void
+Menu::InteraccionDestino(void){
+    // LOOP DE ITERACION
+    this->SolicitarEntradaUsuario("Accion sobre el destino: ");
+
+    if (this->entrada_usuario == "ALTA")
+        this->Alta();
+    else if (this->entrada_usuario == "BAJA")
+        this->Baja();
+    else if (this->entrada_usuario == "CONSULTA")
+        this->Consulta();
+    else
+        std::cout << "Input invalido, favor reingresar\n" << std::endl;
 }
 
 void
@@ -213,7 +248,7 @@ std::string Menu::SolicitarNombreItem(){
     return this->entrada_usuario;
 }
 
-bool Menu::SolicitarArchivo(bool carga){
+void Menu::SolicitarArchivo(bool carga){
     std::string mensaje;
     (carga) ? mensaje = "Ingrese ruta de archivo de carga: ": mensaje = "Ingrese ruta de archivo de guardado: ";
 

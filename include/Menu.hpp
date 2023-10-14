@@ -7,17 +7,13 @@
 
 #include "inventario.hpp"
 
-std::string ruta_entrada = "";
-std::string ruta_salida = "";
-const size_t TAMANIO_MAXIMO = 15;
-const size_t CARGA = 0;
-const size_t GUARDADO = 1;
-const size_t SOBREESCRITURA = 2;
-
 class Menu {
     private:
         Inventario inventario;
         std::string entrada_usuario = "";
+
+        void InteraccionInventario();
+        void InteraccionDestino();
 
         // Pre: 
         // Post: Imprime mensaje y solicita input, guardando el mismo en this->entrada_usuario
@@ -69,7 +65,7 @@ class Menu {
 
         // Pre: carga = true -> Archivo de carga, else archivo de guardado
         // Post: 
-        bool SolicitarArchivo(bool carga);
+        void SolicitarArchivo(bool carga);
         // Pre: bool. True = archivo entrada, False = archivo salida
         // Post: Validar archivo 
         void ValidarArchivoPredefinido(bool entrada_salida);
