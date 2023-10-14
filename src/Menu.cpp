@@ -12,21 +12,19 @@ Menu::Menu(){
     this->validar_ruta_predefinida(false);
 
     // CARGAR desde archivo
-    if (ruta_entrada == ""){
-        if ( this->solicitar_carga() )
-            this->cargar_archivo();
-    }
-    else
+    if (ruta_entrada == "")
+        this->solicitar_carga();
+
+    if (ruta_entrada != "")
         this->cargar_archivo();
 }
 
 Menu::~Menu(){
     // GUARDAR archivo
-    if (ruta_salida == ""){
-        if( this->solicitar_guardado() )
-            this->guardar_archivo();
-    }
-    else
+    if (ruta_salida == "")
+        this->solicitar_guardado();
+
+    if (ruta_salida != "")
         this->guardar_archivo();
     
     std::cout << "¡Hasta luego!\n" << std::endl;
@@ -178,7 +176,6 @@ void Menu::baja(){
         std::cout << "Inventario vacio" << std::endl;
     else
         this->inventario.baja(this->solicitar_nombre_item());    
-    std::cout << std::endl;
 }
 
 void Menu::consulta(){
@@ -222,7 +219,7 @@ void Menu::solicitar_archivo(bool carga){
     std::fstream test;
     test.open(this->entrada_usuario);
     while (!test.is_open()){
-        std::cout << "El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+        std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
         this->solicitar_entrada(mensaje);
         test.open(this->entrada_usuario);
     }
@@ -245,32 +242,38 @@ void Menu::solicitar_forzado(size_t indice){
     }
 }
 
-bool Menu::procesar_linea(std::string linea, std::string &nombre, std::string &tipo){
-    bool resultado = true;
-    size_t i = 0;
-    size_t words = 0;
+bool Menu::solicitar_carga(){
+    // SOLICITAR ENTRADA DE USUARIO
+    this->solicitar_forzado(CARGA);
 
-    while ( ( linea[i] != '\0' && linea[i] != '\n' ) && words < 2){
+    // Intentar abrir archivo 
+    bool resultado = (this->entrada_usuario == "S");
+    if (resultado){
+        this->solicitar_archivo(true);
+        ruta_entrada = this->entrada_usuario;        
+    }
 
-        if ( linea[i] != ',')
-            (words == 0) ? nombre += linea[i] : tipo += linea[i];
-        else{
-            (words == 0) ? nombre += '\0' : tipo += '\0';
+    return resultado;
+}
 
-            words++;
+bool Menu::solicitar_guardado(){
+    // Solicitar entrada
+    this->solicitar_forzado(GUARDADO);
+
+    bool resultado = (this->entrada_usuario == "S");
+    // Validacion
+    if (resultado){
+        // Preguntar por sobreescritura
+        if (ruta_entrada != ""){
+            this->solicitar_forzado(SOBREESCRITURA);
+            if (this->entrada_usuario == "S")
+                ruta_salida = ruta_entrada;         
         }
-        i++;
-    }
 
-    if (words == 0 || words >= 2){
-        std::cout << "ERROR: Linea mal formateada (se descarta la linea)" << std::endl;
-        std::cout << "Linea invalida: " << linea << "\n" <<std::endl;
-        resultado = false;
-    }
-    else if ((tipo != TIPO_CURATIVO) && (tipo != TIPO_MUNICION) && (tipo != TIPO_PUZZLE)){
-        std::cout << "ERROR: Tipo de item invalido (se descarta la linea)" << std::endl;
-        std::cout << "Linea invalida: " << linea << "\n" << std::endl;
-        resultado = false;
+        if ((ruta_entrada != ruta_salida) || ruta_entrada == "" ){
+            this->solicitar_archivo(false);
+            ruta_salida = this->entrada_usuario;
+        }
     }
     
     return resultado;
@@ -295,7 +298,7 @@ void Menu::cargar_archivo(){
         std::string nombre = "";
         std::string tipo = "";
 
-        if ( this->procesar_linea(linea,nombre,tipo) )
+        if ( this->procesar_linea_archivo(linea,nombre,tipo) )
             this->alta(nombre,tipo);
     }
     archivo_entrada.close();
@@ -357,4 +360,35 @@ void Menu::validar_ruta_predefinida(bool entrada_salida){
         (entrada_salida) ? ruta_entrada = "" : ruta_salida = "" ;
 }
 
+bool Menu::procesar_linea_archivo(std::string linea, std::string &nombre, std::string &tipo){
+    size_t i = 0;
+    size_t palabras = 0;
+
+    while ( ( linea[i] != '\0' && linea[i] != '\n' ) && palabras < 2){
+        if ( linea[i] != ',')
+            (palabras == 0) ? nombre += linea[i] : tipo += linea[i];
+        else
+            palabras++;
+    
+        i++;
+    }
+    
+    return analisis_linea_archivo(palabras,linea,tipo);
+}
+
+bool Menu::analisis_linea_archivo(size_t palabras, std::string linea, std::string tipo){
+    bool resultado = true;
+    if (palabras == 0 || palabras >= 2){
+        std::cout << "ERROR: Linea mal formateada (se descarta la linea)" << std::endl;
+        std::cout << "Linea invalida: " << linea << "\n" <<std::endl;
+        resultado = false;
+    }
+    else if ((tipo != TIPO_CURATIVO) && (tipo != TIPO_MUNICION) && (tipo != TIPO_PUZZLE)){
+        std::cout << "ERROR: Tipo de item invalido (se descarta la linea)" << std::endl;
+        std::cout << "Linea invalida: " << linea << "\n" << std::endl;
+        resultado = false;
+    }
+
+    return resultado;
+}
 

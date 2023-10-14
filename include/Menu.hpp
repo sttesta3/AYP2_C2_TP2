@@ -62,7 +62,7 @@ class Menu {
         void interaccion_destino();
 
         // Pre: 
-        // Post: Imprime mensaje y solicita input, guardando el mismo en this->entrada_usuario
+        // Post: Solicita entrada al usuario, utilizando el mensaje 
         void solicitar_entrada(std::string mensaje);
 
         // Pre:
@@ -83,12 +83,16 @@ class Menu {
         // Post: 
         void solicitar_forzado(size_t indice);
 
-        bool procesar_linea(std::string linea, std::string &nombre, std::string &tipo);
-
 //.........................................................................................
 //............. FUNCIONES DE MANEJO DE ARCHVIOS
 //.........................................................................................
 
+        // Pre:
+        // Post: Separa linea en nombre y tipo. Devuelve true/false si linea es valida
+        bool procesar_linea_archivo(std::string linea, std::string &nombre, std::string &tipo);
+        // Pre: 
+        // Post: Devuelve true/false segun si la linea es valida
+        bool analisis_linea_archivo(size_t palabras, std::string linea, std::string tipo); 
         // Pre:
         // Post: Carga archivo en inventario del menu
         void cargar_archivo();
