@@ -1,4 +1,4 @@
-#include "item.hpp"
+#include "Item.hpp"
 #include <iostream>
 
 item::item(std::string nombre, std::string tipo) {
