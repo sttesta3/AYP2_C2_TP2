@@ -89,7 +89,7 @@ void Menu::interaccion_destino(void){
 
 void Menu::agregar_evento(){
     this->solicitar_evento();
-    evento nuevo = evento( this->entrada_usuario );
+    Evento nuevo = Evento( this->entrada_usuario );
     this->eventos.acolar(nuevo);
 }
 
@@ -134,7 +134,7 @@ void Menu::solicitar_entrada(std::string mensaje){
 void Menu::alta(){
     // SOLICITAR INPUT A USUARIO
     if (this->inventario.tamanio() < TAMANIO_MAXIMO){
-        item alta = item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
+        Item alta = Item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
         this->inventario.alta(alta);
     }
     else
@@ -143,7 +143,7 @@ void Menu::alta(){
 
 void Menu::alta(std::string nombre, std::string tipo){
     if (this->inventario.tamanio() < TAMANIO_MAXIMO){
-        item alta = item(nombre,tipo);
+        Item alta = Item(nombre,tipo);
         this->inventario.alta(alta);
     }
     else

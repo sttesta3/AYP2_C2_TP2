@@ -14,14 +14,6 @@ class Menu {
         Eventos eventos;
         std::string entrada_usuario = "";
 
-        // Pre: -
-        // Post: Menu de interaccion con el inventario
-        void interaccion_inventario();
-
-        // Pre: -
-        // Post: Menu de interaccion con destino
-        void interaccion_destino();
-
 //.........................................................................................
 //............. FUNCIONES DE MANEJO DE DESTINO (TP 2)
 //.........................................................................................
@@ -43,20 +35,6 @@ class Menu {
 //............. FUNCIONES DE MANEJO DE INVENTARIO (TP 1)
 //.........................................................................................
 
-        // Pre: 
-        // Post: Imprime mensaje y solicita input, guardando el mismo en this->entrada_usuario
-        void solicitar_entrada(std::string mensaje);
-
-        // Pre:
-        // Post: Devuelve nombre de item
-        std::string solicitar_nombre_item();
-        // Pre:
-        // Post: Devuelve tipo de item
-        std::string solicitar_tipo_item();
-        // METODOS DE INTERACCIÓN CON INVENTARIO
-
-        bool procesar_linea(std::string linea, std::string &nombre, std::string &tipo);
-
         // Pre:
         // Post: Solicita entrada y carga en inventario
         void alta();
@@ -71,14 +49,28 @@ class Menu {
         // Post: Imprime inventario
         void consulta();
 
-        // METODOS DE MANEJO DE ARCHIVOS
+//.........................................................................................
+//............. FUNCIONES DE MANEJO DE INTERACCION CON USUARIO
+//.........................................................................................
+
+        // Pre: -
+        // Post: Menu de interaccion con el inventario
+        void interaccion_inventario();
+
+        // Pre: -
+        // Post: Menu de interaccion con destino
+        void interaccion_destino();
+
+        // Pre: 
+        // Post: Imprime mensaje y solicita input, guardando el mismo en this->entrada_usuario
+        void solicitar_entrada(std::string mensaje);
 
         // Pre:
-        // Post: Carga archivo en inventario del menu
-        void cargar_archivo();
+        // Post: Devuelve nombre de item
+        std::string solicitar_nombre_item();
         // Pre:
-        // Post: Guarda archivo de partida
-        void guardar_archivo();
+        // Post: Devuelve tipo de item
+        std::string solicitar_tipo_item();
 
         // Pre:
         // Post: Consulta si desea cargar
@@ -90,6 +82,19 @@ class Menu {
         // Pre: indice = 0 (carga), 1 (guardado), 2 (sobre escribir)
         // Post: 
         void solicitar_forzado(size_t indice);
+
+        bool procesar_linea(std::string linea, std::string &nombre, std::string &tipo);
+
+//.........................................................................................
+//............. FUNCIONES DE MANEJO DE ARCHVIOS
+//.........................................................................................
+
+        // Pre:
+        // Post: Carga archivo en inventario del menu
+        void cargar_archivo();
+        // Pre:
+        // Post: Guarda archivo de partida
+        void guardar_archivo();
 
         // Pre: carga = true -> Archivo de carga, else archivo de guardado
         // Post: 

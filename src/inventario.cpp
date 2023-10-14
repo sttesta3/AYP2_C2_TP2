@@ -1,6 +1,6 @@
 #include "inventario.hpp"
 
-void Inventario::alta(item nuevo){
+void Inventario::alta(Item nuevo){
     this->inventario.alta(nuevo);
 }
 
@@ -9,7 +9,7 @@ void Inventario::baja(std::string baja){
         std::cout << "Inventario vacio" << std::endl;
     else{
         this->inventario.reiniciar_cursor(true);
-        item posicion = this->inventario.avanzar(true);
+        Item posicion = this->inventario.avanzar(true);
         size_t i = 0;  
 
         while (!(posicion==baja) && this->inventario.puede_avanzar()){
@@ -24,7 +24,7 @@ void Inventario::baja(std::string baja){
     }
 }
 
-item Inventario::baja(){
+Item Inventario::baja(){
     return this->inventario.baja(0);
 }
 

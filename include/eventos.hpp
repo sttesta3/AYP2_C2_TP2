@@ -6,7 +6,7 @@
 
 class Eventos {
     private:
-        Cola <evento> eventos = Cola <evento>();
+        Cola <Evento> eventos = Cola <Evento>();
         std::string perfil = "INDETERMINADO";
 
     public:
@@ -15,11 +15,11 @@ class Eventos {
         
         // Pre: -
         // Post: Da alta item en inventario
-        void acolar(evento nuevo);
+        void acolar(Evento nuevo);
 
         // Pre: -
         // Post: Elimina la primer aparicion de item en inventario 
-        evento descolar();
+        Evento descolar();
 
         // Pre: -
         // Post: Define y devuelve perfil de jugador

@@ -6,17 +6,17 @@
 const std::string ACCION_GUARDADO = "GUARDADO";
 const std::string ACCION_APERTURA_MAPA = "APERTURA_MAPA";
 
-class evento {
+class Evento {
 private:
     std::string accion_ejecutada;
     // Otros atributos asociados a la descripción del evento.
 
 public:
     // Constructor default:
-    evento() = default;
+    Evento() = default;
     
     // Constructor.
-    explicit evento(std::string accion_ejecutada);
+    explicit Evento(std::string accion_ejecutada);
 
     // Pre:
     // Post: Devuelve true si la acción coincide con la ejecutada.

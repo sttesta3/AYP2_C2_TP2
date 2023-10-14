@@ -7,7 +7,7 @@
 
 class Inventario {
     private:
-        Lista_de <item> inventario = Lista_de <item> ();
+        Lista_de <Item> inventario = Lista_de <Item> ();
 
     public:
         Inventario() = default;
@@ -15,7 +15,7 @@ class Inventario {
         
         // Pre: -
         // Post: Da alta item en inventario
-        void alta(item nuevo);
+        void alta(Item nuevo);
 
         // Pre: -
         // Post: Elimina la primer aparicion de item en inventario 
@@ -23,7 +23,7 @@ class Inventario {
 
         // Pre: -
         // Post: Elimina primer item de lista 
-        item baja();
+        Item baja();
 
         // Pre: -
         // Post: Imprime inventario 
