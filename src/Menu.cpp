@@ -35,14 +35,25 @@ Menu::~Menu(){
 void Menu::juego(void){
     // LOOP DE ITERACION
     while (this->entrada_usuario.compare("SALIR") ){
-        this->solicitar_entrada("Operar sobre inventario/destino: ");
+        this->solicitar_entrada("MENU INICIAL> Operar sobre inventario/destino: ");
 
-        if (this->entrada_usuario == "DESTINO")
+        if (this->entrada_usuario == "DESTINO"){
             this->interaccion_destino();
-        else if (this->entrada_usuario == "INVENTARIO")
+            this->entrada_usuario = "";
+        }
+        else if (this->entrada_usuario == "INVENTARIO"){
             this->interaccion_inventario();
-        else
-            std::cout << "Input invalido, favor reingresar\n" << std::endl;
+            this->entrada_usuario = "";
+        }
+        else if (this->entrada_usuario == "AYUDA"){
+            std::cout << " * INVENTARIO: Sub Menu para modificar inventario" << std::endl;
+            std::cout << " * DESTINO: Sub Menu para modificar destino" << std::endl;
+            std::cout << " * SALIR: Salir de prueba de funcionalidades\n" << std::endl;
+        }
+        else if (this->entrada_usuario != "SALIR"){
+            std::cout << " - Input invalido, favor reingresar" << std::endl;
+            std::cout << " - Ingrese 'AYUDA' para ver opciones del menu\n" << std::endl;
+        }
     }
 }
 
@@ -50,7 +61,8 @@ void Menu::interaccion_inventario(void){
     // LOOP DE ITERACION
     bool repetir = false;
     do {
-        this->solicitar_entrada("Accion sobre el inventario: ");
+        repetir = false;
+        this->solicitar_entrada("INVENTARIO> Accion sobre el inventario: ");
 
         if (this->entrada_usuario == "ALTA")
             this->alta();
@@ -58,8 +70,16 @@ void Menu::interaccion_inventario(void){
             this->baja();
         else if (this->entrada_usuario == "CONSULTA")
             this->consulta();
-        else {
-            std::cout << "Input invalido, favor reingresar\n" << std::endl;
+        else if (this->entrada_usuario == "AYUDA"){
+            std::cout << " * ALTA: Dar de alta nuevo Item en inventario (max 15)" << std::endl;
+            std::cout << " * BAJA: Dar de baja Item de inventario" << std::endl;
+            std::cout << " * CONSULTA: Mostrar inventario" << std::endl;
+            std::cout << " * SALIR: Salir de submenu de manejo de inventario\n" << std::endl;
+            repetir = true;
+        }
+        else if (this->entrada_usuario != "SALIR"){
+            std::cout << " - Input invalido, favor reingresar" << std::endl;
+            std::cout << " - Ingrese 'AYUDA' para ver opciones del sub-menu\n" << std::endl;
             repetir = true;
         }
     } while (repetir);
@@ -69,15 +89,24 @@ void Menu::interaccion_destino(void){
     // LOOP DE ITERACION
     bool repetir = false;    
     do {
-        this->solicitar_entrada("Accion sobre el destino: ");
+        repetir = false;
+        this->solicitar_entrada("DESTINO> Accion sobre el destino: ");
         if (this->entrada_usuario == "AGREGAR_EVENTO")
             this->agregar_evento();
         else if (this->entrada_usuario == "DEFINIR_DESTINO")
             this->definir_destino();
         else if (this->entrada_usuario == "MOSTRAR_SUCESO")
             this->mostrar_suceso();
-        else{
-            std::cout << "Input invalido, favor reingresar\n" << std::endl;
+        else if (this->entrada_usuario == "AYUDA"){
+            std::cout << " * AGREGAR_EVENTO: Agregar evento de usuario" << std::endl;
+            std::cout << " * DEFINIR DESTINO: Definir perfil de usuario" << std::endl;
+            std::cout << " * MOSTRAR SUCESO: Mostrar suceso segun perfil de usuario" << std::endl;
+            std::cout << " * SALIR: Salir de submenu de manejo de destino\n" << std::endl;
+            repetir = true;
+        }
+        else if (this->entrada_usuario != "SALIR"){
+            std::cout << " - Input invalido, favor reingresar" << std::endl;
+            std::cout << " - Ingrese 'AYUDA' para ver opciones del sub-menu\n" << std::endl;
             repetir = true;
         }
     } while (repetir);
@@ -125,12 +154,6 @@ void Menu::solicitar_evento(){
 //............. FUNCIONES DE MANEJO DE INVENTARIO (TP 1)
 //.........................................................................................
 
-void Menu::solicitar_entrada(std::string mensaje){
-    std::cout << mensaje;
-    getline(std::cin,this->entrada_usuario);
-    std::cout << std::endl;
-}
-
 void Menu::alta(){
     // SOLICITAR INPUT A USUARIO
     if (this->inventario.tamanio() < TAMANIO_MAXIMO){
@@ -160,6 +183,17 @@ void Menu::baja(){
 
 void Menu::consulta(){
     this->inventario.consulta();
+    std::cout << std::endl;
+}
+
+//.........................................................................................
+//............. FUNCIONES DE MANEJO DE INTERACCION CON USUARIO
+//.........................................................................................
+
+void Menu::solicitar_entrada(std::string mensaje){
+    std::cout << mensaje;
+    getline(std::cin,this->entrada_usuario);
+    std::cout << std::endl;
 }
 
 bool Menu::procesar_linea(std::string linea, std::string &nombre, std::string &tipo){
@@ -192,6 +226,58 @@ bool Menu::procesar_linea(std::string linea, std::string &nombre, std::string &t
     
     return resultado;
 }
+
+std::string Menu::solicitar_tipo_item(){
+    this->solicitar_entrada("Tipo del item: ");
+
+    while( !( (this->entrada_usuario == TIPO_CURATIVO) || (this->entrada_usuario == TIPO_MUNICION) || (this->entrada_usuario == TIPO_PUZZLE) )){
+        std::cout << "Entrada invalida, favor reingresar" << std::endl;
+        this->solicitar_entrada("Tipo del item: ");
+    }   
+
+    return this->entrada_usuario;
+}
+
+std::string Menu::solicitar_nombre_item(){
+    this->solicitar_entrada("Nombre del item: ");
+    return this->entrada_usuario;
+}
+
+void Menu::solicitar_archivo(bool carga){
+    std::string mensaje;
+    (carga) ? mensaje = "Ingrese ruta de archivo de carga: ": mensaje = "Ingrese ruta de archivo de guardado: ";
+
+    this->solicitar_entrada(mensaje);
+
+    std::fstream test;
+    test.open(this->entrada_usuario);
+    while (!test.is_open()){
+        std::cout << "El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+        this->solicitar_entrada(mensaje);
+        test.open(this->entrada_usuario);
+    }
+    test.close();
+    (carga) ? ruta_entrada = this->entrada_usuario : ruta_salida = this->entrada_usuario;
+}
+
+void Menu::solicitar_forzado(size_t indice){
+    std::string mensaje;
+    switch (indice){
+        case 0: mensaje = "¿Desea cargar inventario desde savefile?[S/N]: "; break;
+        case 1: mensaje = "¿Desea guardar inventario en savefile?[S/N]: ";   break;
+        case 2: mensaje = "¿Desea sobreescribir archivo de entrada?[S/N]: "; break;
+    }
+
+    this->solicitar_entrada(mensaje);
+    while (this->entrada_usuario != "S" && this->entrada_usuario != "N"){
+        std::cout << "Entrada invalida. Favor reingresar" << std::endl;
+        this->solicitar_entrada(mensaje);
+    }
+}
+
+//.........................................................................................
+//............. FUNCIONES DE MANEJO DE ARCHVIOS
+//.........................................................................................
 
 void Menu::cargar_archivo(){
     if (this->inventario.tamanio() == 15){
@@ -271,50 +357,3 @@ void Menu::validar_ruta_predefinida(bool entrada_salida){
 }
 
 
-std::string Menu::solicitar_tipo_item(){
-    this->solicitar_entrada("Tipo del item: ");
-
-    while( !( (this->entrada_usuario == TIPO_CURATIVO) || (this->entrada_usuario == TIPO_MUNICION) || (this->entrada_usuario == TIPO_PUZZLE) )){
-        std::cout << "Entrada invalida, favor reingresar" << std::endl;
-        this->solicitar_entrada("Tipo del item: ");
-    }   
-
-    return this->entrada_usuario;
-}
-
-std::string Menu::solicitar_nombre_item(){
-    this->solicitar_entrada("Nombre del item: ");
-    return this->entrada_usuario;
-}
-
-void Menu::solicitar_archivo(bool carga){
-    std::string mensaje;
-    (carga) ? mensaje = "Ingrese ruta de archivo de carga: ": mensaje = "Ingrese ruta de archivo de guardado: ";
-
-    this->solicitar_entrada(mensaje);
-
-    std::fstream test;
-    test.open(this->entrada_usuario);
-    while (!test.is_open()){
-        std::cout << "El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
-        this->solicitar_entrada(mensaje);
-        test.open(this->entrada_usuario);
-    }
-    test.close();
-    (carga) ? ruta_entrada = this->entrada_usuario : ruta_salida = this->entrada_usuario;
-}
-
-void Menu::solicitar_forzado(size_t indice){
-    std::string mensaje;
-    switch (indice){
-        case 0: mensaje = "¿Desea cargar inventario desde savefile?[S/N]: "; break;
-        case 1: mensaje = "¿Desea guardar inventario en savefile?[S/N]: ";   break;
-        case 2: mensaje = "¿Desea sobreescribir archivo de entrada?[S/N]: "; break;
-    }
-
-    this->solicitar_entrada(mensaje);
-    while (this->entrada_usuario != "S" && this->entrada_usuario != "N"){
-        std::cout << "Entrada invalida. Favor reingresar" << std::endl;
-        this->solicitar_entrada(mensaje);
-    }
-}
