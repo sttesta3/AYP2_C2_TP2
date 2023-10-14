@@ -2,7 +2,7 @@
 
 int main() {
     Menu menu = Menu();
-    menu.Juego();
+    menu.juego();
 
     return 0;
 }

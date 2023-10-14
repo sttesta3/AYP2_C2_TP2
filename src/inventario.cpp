@@ -1,10 +1,10 @@
 #include "inventario.hpp"
 
-void Inventario::Alta(item nuevo){
+void Inventario::alta(item nuevo){
     this->inventario.alta(nuevo);
 }
 
-void Inventario::Baja(std::string baja){
+void Inventario::baja(std::string baja){
     if (this->inventario.vacio())
         std::cout << "Inventario vacio" << std::endl;
     else{
@@ -24,11 +24,11 @@ void Inventario::Baja(std::string baja){
     }
 }
 
-item Inventario::Baja(){
+item Inventario::baja(){
     return this->inventario.baja(0);
 }
 
-void Inventario::Consulta(){
+void Inventario::consulta(){
     if (this->inventario.vacio())
         std::cout << "Inventario vacio" << std::endl;
     else{
@@ -36,4 +36,8 @@ void Inventario::Consulta(){
         while(this->inventario.puede_avanzar())
             std::cout << this->inventario.avanzar(true) << std::endl;
     }
+}
+
+size_t Inventario::tamanio(){
+    return this->inventario.tamanio();
 }

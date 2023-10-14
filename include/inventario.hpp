@@ -5,7 +5,6 @@
 #include "Item.hpp"
 #include <iostream>
 
-
 class Inventario {
     private:
         lista_de <item> inventario = lista_de <item> ();
@@ -16,19 +15,19 @@ class Inventario {
         
         // Pre: -
         // Post: Da alta item en inventario
-        void Alta(item nuevo);
+        void alta(item nuevo);
 
         // Pre: -
         // Post: Elimina la primer aparicion de item en inventario 
-        void Baja(std::string baja);
+        void baja(std::string baja);
 
         // Pre: -
         // Post: Elimina primer item de lista 
-        item Baja();
+        item baja();
 
         // Pre: -
         // Post: Imprime inventario 
-        void Consulta();
+        void consulta();
 
         // Pre: - 
         // Post: Devuelve tamanio del inventario

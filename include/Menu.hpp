@@ -5,70 +5,98 @@
 #include <iostream>
 #include <string.h>
 
+#include "eventos.hpp"
 #include "inventario.hpp"
 
 class Menu {
     private:
         Inventario inventario;
+        Eventos eventos;
         std::string entrada_usuario = "";
 
-        void InteraccionInventario();
-        void InteraccionDestino();
+        // Pre: -
+        // Post: Menu de interaccion con el inventario
+        void interaccion_inventario();
+
+        // Pre: -
+        // Post: Menu de interaccion con destino
+        void interaccion_destino();
+
+//.........................................................................................
+//............. FUNCIONES DE MANEJO DE DESTINO (TP 2)
+//.........................................................................................
+
+        // Pre: -
+        // Post: Solicita y agrega evento
+        void agregar_evento();
+        // Pre: -
+        // Post: Interaccion con usuario para solicitar evento
+        void solicitar_evento();
+        // Pre: -
+        // Post: Define el perfil del jugador
+        void definir_destino();
+        // Pre: -
+        // Post: Muestra suceso que le ocurrira al jugador
+        void mostrar_suceso();
+
+//.........................................................................................
+//............. FUNCIONES DE MANEJO DE INVENTARIO (TP 1)
+//.........................................................................................
 
         // Pre: 
         // Post: Imprime mensaje y solicita input, guardando el mismo en this->entrada_usuario
-        void SolicitarEntradaUsuario(std::string mensaje);
+        void solicitar_entrada(std::string mensaje);
 
         // Pre:
         // Post: Devuelve nombre de item
-        std::string SolicitarNombreItem();
+        std::string solicitar_nombre_item();
         // Pre:
         // Post: Devuelve tipo de item
-        std::string SolicitarTipoItem();
+        std::string solicitar_tipo_item();
         // METODOS DE INTERACCIÓN CON INVENTARIO
 
-        bool ProcesarLinea(std::string linea, std::string &nombre, std::string &tipo);
+        bool procesar_linea(std::string linea, std::string &nombre, std::string &tipo);
 
         // Pre:
         // Post: Solicita entrada y carga en inventario
-        void Alta();
+        void alta();
 
         // Pre: Item 
         // Post: Carga en inventario 
-        void Alta(std::string nombre, std::string tipo);
+        void alta(std::string nombre, std::string tipo);
         // Pre:
         // Post: Solicita entrada y elimina primer aparicion en inventario
-        void Baja();
+        void baja();
         // Pre:
         // Post: Imprime inventario
-        void Consulta();
+        void consulta();
 
         // METODOS DE MANEJO DE ARCHIVOS
 
         // Pre:
         // Post: Carga archivo en inventario del menu
-        void CargarArchivo();
+        void cargar_archivo();
         // Pre:
         // Post: Guarda archivo de partida
-        void GuardarArchivo();
+        void guardar_archivo();
 
         // Pre:
         // Post: Consulta si desea cargar
-        bool SolicitarCarga(void);
+        bool solicitar_carga(void);
         // Pre:
         // Post: Consulta si desea guardar
-        bool SolicitarGuardado(void);
+        bool solicitar_guardado(void);
 
         // Pre: indice = 0 (carga), 1 (guardado), 2 (sobre escribir)
         // Post: 
-        void SolicitarForzado(size_t indice);
+        void solicitar_forzado(size_t indice);
 
         // Pre: carga = true -> Archivo de carga, else archivo de guardado
         // Post: 
-        void SolicitarArchivo(bool carga);
+        void solicitar_archivo(bool carga);
         // Pre: bool. True = archivo entrada, False = archivo salida
         // Post: Validar archivo 
-        void ValidarArchivoPredefinido(bool entrada_salida);
+        void validar_ruta_predefinida(bool ruta);
 
     public:
         Menu();
@@ -76,7 +104,7 @@ class Menu {
 
         // Pre:
         // Post: Corre el juego completo 
-        void Juego(void);
+        void juego(void);
 
 };
 
