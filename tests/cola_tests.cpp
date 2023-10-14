@@ -3,7 +3,7 @@
 
 class cola_tests : public ::testing::Test {
 protected:
-    cola<int> cola1{};
+    Cola<int> cola1{};
     int dato{};
 };
 
@@ -30,7 +30,7 @@ TEST_F(cola_tests, baja) {
 }
 
 TEST_F(cola_tests, baja_maneja_cola_vacia) {
-    EXPECT_THROW(cola1.baja(), cola_exception);
+    EXPECT_THROW(cola1.baja(), Cola_exception);
 }
 
 TEST_F(cola_tests, vacio) {
@@ -56,9 +56,9 @@ TEST_F(cola_tests, tamanio) {
 }
 
 TEST_F(cola_tests, primero_maneja_cola_vacia) {
-    EXPECT_THROW(cola1.primero(), cola_exception);
+    EXPECT_THROW(cola1.primero(), Cola_exception);
 }
 
 TEST_F(cola_tests, ultimo_maneja_cola_vacia) {
-    EXPECT_THROW(cola1.ultimo(), cola_exception);
+    EXPECT_THROW(cola1.ultimo(), Cola_exception);
 }

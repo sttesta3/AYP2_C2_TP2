@@ -3,7 +3,7 @@
 
 class lista_de_tests : public ::testing::Test {
 protected:
-    lista_de<int> lista{};
+    Lista_de<int> lista{};
     int dato{};
 };
 
@@ -32,7 +32,7 @@ TEST_F(lista_de_tests, baja) {
 TEST_F(lista_de_tests, baja_maneja_lista_vacia) {
     lista.alta(1);
     lista.baja();
-    EXPECT_THROW(lista.baja(), lista_exception);
+    EXPECT_THROW(lista.baja(), Lista_exception);
 }
 
 TEST_F(lista_de_tests, elemento) {
@@ -52,8 +52,8 @@ TEST_F(lista_de_tests, elemento_maneja_indice_mayor_igual) {
     lista.alta(2);
     lista.alta(3);
 
-    EXPECT_THROW(lista.elemento(3), lista_exception);
-    EXPECT_THROW(lista.elemento(4), lista_exception);
+    EXPECT_THROW(lista.elemento(3), Lista_exception);
+    EXPECT_THROW(lista.elemento(4), Lista_exception);
     EXPECT_NO_THROW(lista.elemento(2));
 }
 
@@ -72,8 +72,8 @@ TEST_F(lista_de_tests, alta_indice_maneja_indice_mayor) {
     lista.alta(2);
     lista.alta(3);
 
-    EXPECT_THROW(lista.alta(4, 4), lista_exception);
-    EXPECT_THROW(lista.alta(5, 5), lista_exception);
+    EXPECT_THROW(lista.alta(4, 4), Lista_exception);
+    EXPECT_THROW(lista.alta(5, 5), Lista_exception);
     EXPECT_NO_THROW(lista.alta(6, 3));
 }
 
@@ -101,8 +101,8 @@ TEST_F(lista_de_tests, baja_indice_maneja_indice_mayor_igual) {
     lista.alta(2);
     lista.alta(3);
 
-    EXPECT_THROW(lista.baja(3), lista_exception);
-    EXPECT_THROW(lista.baja(4), lista_exception);
+    EXPECT_THROW(lista.baja(3), Lista_exception);
+    EXPECT_THROW(lista.baja(4), Lista_exception);
     EXPECT_NO_THROW(lista.baja(2));
 }
 
@@ -158,18 +158,18 @@ TEST_F(lista_de_tests, avanzar) {
 }
 
 TEST_F(lista_de_tests, avanzar_maneja_no_puede_avanzar) {
-    EXPECT_THROW(lista.avanzar(true), lista_exception);
+    EXPECT_THROW(lista.avanzar(true), Lista_exception);
 
     lista.alta(1);
     lista.alta(2);
 
     lista.reiniciar_cursor(true);
     EXPECT_NO_THROW(lista.avanzar(false));
-    EXPECT_THROW(lista.avanzar(false), lista_exception);
+    EXPECT_THROW(lista.avanzar(false), Lista_exception);
 
     lista.reiniciar_cursor(false);
     EXPECT_NO_THROW(lista.avanzar(true));
-    EXPECT_THROW(lista.avanzar(true), lista_exception);
+    EXPECT_THROW(lista.avanzar(true), Lista_exception);
 }
 
 TEST_F(lista_de_tests, reiniciar_cursor) {
@@ -211,9 +211,9 @@ TEST_F(lista_de_tests, reiniciar_cursor) {
 }*/
 
 TEST_F(lista_de_tests, primero_maneja_lista_vacia) {
-    EXPECT_THROW(lista.primero(), lista_exception);
+    EXPECT_THROW(lista.primero(), Lista_exception);
 }
 
 TEST_F(lista_de_tests, ultimo_maneja_lista_vacia) {
-    EXPECT_THROW(lista.ultimo(), lista_exception);
+    EXPECT_THROW(lista.ultimo(), Lista_exception);
 }

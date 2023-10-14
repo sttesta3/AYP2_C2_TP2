@@ -2,52 +2,52 @@
 #define NODO_HPP
 
 template<typename T>
-class nodo {
+class Nodo {
 private:
     T dato{};
-    nodo<T>* siguiente;
+    Nodo<T>* siguiente;
 public:
     // Constructor.
-    nodo(T dato);
+    Nodo(T dato);
 
     // Pre: -
     // Post: Devuelve un puntero al nodo siguiente.
-    nodo<T>* obtener_siguiente();
+    Nodo<T>* obtener_siguiente();
 
     // Pre: -
     // Post: Cambia el puntero al nodo siguiente.
-    void cambiar_siguiente(nodo<T>* nuevo);
+    void cambiar_siguiente(Nodo<T>* nuevo);
 
     // Pre: -
     // Post: Devuelve el dato almacenado.
     T obtener_dato();
 
     // Destructor.
-    ~nodo();
+    ~Nodo();
 };
 
 template <typename T>
-nodo<T>::nodo(T dato){
+Nodo<T>::Nodo(T dato){
     this->dato = dato;
     this->siguiente = nullptr;
 }
 
 template <typename T>
-nodo<T>* nodo<T>::obtener_siguiente(){
+Nodo<T>* Nodo<T>::obtener_siguiente(){
     return this->siguiente;
 }
 
 template <typename T>
-void nodo<T>::cambiar_siguiente(nodo<T>* nuevo){
+void Nodo<T>::cambiar_siguiente(Nodo<T>* nuevo){
     this->siguiente = nuevo;
 }
 
 template <typename T>
-T nodo<T>::obtener_dato(){
+T Nodo<T>::obtener_dato(){
     return this->dato;
 }
 
 template <typename T>
-nodo<T>::~nodo(){}
+Nodo<T>::~Nodo(){}
 
 #endif

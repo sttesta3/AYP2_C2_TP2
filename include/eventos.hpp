@@ -3,12 +3,10 @@
 
 #include "cola.hpp"
 #include "evento.hpp"
-#include <iostream>
-
 
 class Eventos {
     private:
-        cola <evento> eventos;
+        cola<evento> eventos = cola<evento>();
         std::string perfil = "INDETERMINADO";
 
     public:
