@@ -5,8 +5,8 @@ template<typename T>
 class Nodo_de {
 private:
     T dato{};
-    Nodo_de<T>* anterior;
-    Nodo_de<T>* siguiente;
+    Nodo_de<T>* anterior = nullptr;
+    Nodo_de<T>* siguiente = nullptr;
 public:
     // Constructor.
     Nodo_de(T dato);
@@ -41,8 +41,6 @@ public:
 template <typename T>
 Nodo_de<T>::Nodo_de(T dato){
     this->dato = dato;
-    this->anterior = nullptr;
-    this->siguiente = nullptr;
 }
 
 template <typename T>

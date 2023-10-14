@@ -12,6 +12,9 @@ private:
     // Otros atributos asociados a la descripción del evento.
 
 public:
+    // Constructor default:
+    evento() = default;
+    
     // Constructor.
     explicit evento(std::string accion_ejecutada);
 
