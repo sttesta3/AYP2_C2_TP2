@@ -105,11 +105,11 @@ Nodo_de<T>* Lista_de<T>::obtener_nodo(size_t indice){
     
     // Si esta mas cerca del principio, iniciar desde ahi. Caso contrario desde el final
 //    bool empezar_del_inicio = ( indice <= ( this->tamanio() / 2) );
-    bool empezar_del_inicio = true;
+    bool empezar_del_inicio = ( indice <= ( this->tamanio() / 2) );
 
     Nodo_de<T>* posicion = (empezar_del_inicio) ? this->primer_nodo : this->ultimo_nodo;
-    for (size_t i = 0; i < indice; i++)
-        posicion = posicion->obtener_siguiente();
+    for (size_t i = (empezar_del_inicio) ? 0 : this->tamanio() - 1; (empezar_del_inicio) ? i < indice : i > indice ; (empezar_del_inicio) ? i++ : i--)
+        posicion = (empezar_del_inicio) ? posicion->obtener_siguiente() : posicion->obtener_anterior();
     
     return posicion;
 }
