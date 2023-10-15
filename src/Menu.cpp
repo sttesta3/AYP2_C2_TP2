@@ -207,17 +207,27 @@ std::string Menu::solicitar_nombre_item(){
 void Menu::solicitar_archivo(bool carga){
     std::string mensaje;
     (carga) ? mensaje = "Ingrese ruta de archivo de carga: ": mensaje = "Ingrese ruta de archivo de guardado: ";
-
     this->solicitar_entrada(mensaje);
 
-    std::fstream test;
-    test.open(this->entrada_usuario);
-    while (!test.is_open()){
-        std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
-        this->solicitar_entrada(mensaje);
-        test.open(this->entrada_usuario);
+    std::ifstream test_i;
+    std::ofstream test_o;
+    (carga) ? test_i.open(this->entrada_usuario) : test_o.open(this->entrada_usuario);
+    if (carga){
+        while (!test_i.is_open()){
+            std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+            this->solicitar_entrada(mensaje);
+            test_i.open(this->entrada_usuario);    
+        }   
+        test_i.close();
     }
-    test.close();
+    else {
+        while (!test_o.is_open()){
+            std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+            this->solicitar_entrada(mensaje);
+            test_o.open(this->entrada_usuario);
+        }
+        test_o.close();
+    }
     (carga) ? ruta_entrada = this->entrada_usuario : ruta_salida = this->entrada_usuario;
 }
 
