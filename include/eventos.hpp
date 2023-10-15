@@ -4,10 +4,17 @@
 #include "cola.hpp"
 #include "evento.hpp"
 
+const std::string PERFIL_USUARIO_DESORIENTADO = "DESORIENTADO";
+const std::string PERFIL_USUARIO_PRECAVIDO = "PRECAVIDO";
+const std::string PERFIL_USUARIO_ASUSTADO = "ASUSTADO";
+const std::string PERFIL_USUARIO_INDETERMINADO = "INDETERMINADO";
+
+const size_t CANT_EVENTOS_MAXIMA = 20;
+
 class Eventos {
     private:
         Cola <Evento> eventos = Cola <Evento>();
-        std::string perfil = "INDETERMINADO";
+        std::string perfil = PERFIL_USUARIO_INDETERMINADO;
 
     public:
         Eventos() = default;
@@ -16,6 +23,9 @@ class Eventos {
         // Pre: -
         // Post: Da alta item en inventario
         void acolar(Evento nuevo);
+        // Pre: -
+        // Post: Da alta item en inventario
+        void acolar(Evento nuevo, size_t repeticiones);
 
         // Pre: -
         // Post: Elimina la primer aparicion de item en inventario 

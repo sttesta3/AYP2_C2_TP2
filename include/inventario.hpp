@@ -5,6 +5,7 @@
 #include "Item.hpp"
 #include <iostream>
 
+const size_t TAMANIO_MAXIMO = 15;
 class Inventario {
     private:
         Lista_de <Item> inventario = Lista_de <Item> ();
