@@ -132,7 +132,7 @@ class Menu {
         // Post: Guarda archivo de partida
         void guardar_archivo();
         // Pre: carga = true -> Archivo de carga, else archivo de guardado
-        // Post: 
+        // Post: Solicita forzado un archivo valido. Si el archivo de guardado no es encontrado, crea uno nuevo
         void solicitar_archivo(bool carga);
         // Pre: bool. True = archivo entrada, False = archivo salida
         // Post: Validar archivo 
