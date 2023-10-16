@@ -21,3 +21,4 @@ Para ver las opciones de menu / sub-menu ingresar AYUDA o revisar las constantes
 
 Para agilizar el testeo de los eventos, se agrego la opcion de especificar la cantidad de repeticiones del evento (entre 1 y 20).
 AVISO: La clase eventos NO tiene un límite de cantidad de elementos (no fue solicitado en la consigna). Por lo que se podrían agregar muchos eventos y que cause problemas por la cantidad de memoria solicitada.
+
