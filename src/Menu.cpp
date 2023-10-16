@@ -1,11 +1,8 @@
 #include "Menu.hpp"
 
-std::string ruta_entrada = "";
-std::string ruta_salida = "";
-
 Menu::Menu(){
-    this->validar_ruta_predefinida(true);
-    this->validar_ruta_predefinida(false);
+    this->validar_ruta_predefinida_carga();
+    this->validar_ruta_predefinida_guardado();
 }
 
 Menu::~Menu(){    
@@ -176,7 +173,7 @@ void Menu::cargar_archivo(){
     size_t resultado = this->inventario.cargar_archivo(ruta_entrada);
     if (resultado == 1){
         std::cout << "Se excedio el maximo de elementos en la carga." << std::endl;
-        std::cout << "Los elementos del 15avo en adelante fueron descartados\n." << std::endl;
+        std::cout << "Los elementos del 15avo en adelante fueron descartados.\n" << std::endl;
     }
 }
 
@@ -210,31 +207,31 @@ std::string Menu::solicitar_nombre_item(){
     return this->entrada_usuario;
 }
 
-void Menu::solicitar_archivo(bool carga){
-    std::string mensaje;
-    (carga) ? mensaje = "Ingrese ruta de archivo de carga: ": mensaje = "Ingrese ruta de archivo de guardado: ";
-    this->solicitar_entrada(mensaje);
+void Menu::solicitar_archivo_carga(){
+    this->solicitar_entrada("Ingrese ruta de archivo de carga: ");
 
-    std::ifstream test_i;
-    std::ofstream test_o;
-    (carga) ? test_i.open(this->entrada_usuario) : test_o.open(this->entrada_usuario);
-    if (carga){
-        while (!test_i.is_open()){
-            std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
-            this->solicitar_entrada(mensaje);
-            test_i.open(this->entrada_usuario);    
-        }   
-        test_i.close();
-    }
-    else {
-        while (!test_o.is_open()){
-            std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
-            this->solicitar_entrada(mensaje);
-            test_o.open(this->entrada_usuario);
-        }
-        test_o.close();
-    }
-    (carga) ? ruta_entrada = this->entrada_usuario : ruta_salida = this->entrada_usuario;
+    std::ifstream archivo;
+    archivo.open(this->entrada_usuario);
+    while (!archivo.is_open()){
+        std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+        this->solicitar_entrada("Ingrese ruta de archivo de carga: ");
+        archivo.open(this->entrada_usuario);    
+    }   
+    archivo.close();
+}
+
+void Menu::solicitar_archivo_guardado(){
+    this->solicitar_entrada("Ingrese ruta de archivo de guardado: ");
+
+    std::ofstream archivo;
+    archivo.open(this->entrada_usuario);
+    while (!archivo.is_open()){
+        std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+        this->solicitar_entrada("Ingrese ruta de archivo de guardado: ");
+        archivo.open(this->entrada_usuario);    
+
+    }   
+    archivo.close();
 }
 
 void Menu::solicitar_forzado(size_t indice){
@@ -259,7 +256,7 @@ bool Menu::solicitar_carga(){
     // Intentar abrir archivo 
     bool resultado = (this->entrada_usuario == "S");
     if (resultado){
-        this->solicitar_archivo(true);
+        this->solicitar_archivo_carga();
         ruta_entrada = this->entrada_usuario;        
     }
 
@@ -281,7 +278,7 @@ bool Menu::solicitar_guardado(){
         }
 
         if ((ruta_entrada != ruta_salida) || ruta_entrada == "" ){
-            this->solicitar_archivo(false);
+            this->solicitar_archivo_guardado();
             ruta_salida = this->entrada_usuario;
         }
     }
@@ -349,14 +346,26 @@ size_t Menu::string_len(std::string string){
 //............. FUNCIONES DE MANEJO DE ARCHVIOS
 //.........................................................................................
 
-void Menu::validar_ruta_predefinida(bool entrada_salida){
-    std::fstream archivo;
-    (entrada_salida) ? archivo.open(ruta_entrada) : archivo.open(ruta_salida);
+void Menu::validar_ruta_predefinida_carga(){
+    std::ifstream archivo;
+    archivo.open(ruta_entrada);
 
     if (archivo.is_open())
         archivo.close();
-    else 
-        (entrada_salida) ? ruta_entrada = "" : ruta_salida = "" ;
+    else if (ruta_entrada != "") {
+        std::cout << "No se pudo abrir la ruta de carga predefinida: " << ruta_entrada << "\n" << std::endl;
+        ruta_entrada = "";
+    }
 }
 
+void Menu::validar_ruta_predefinida_guardado(){
+    std::ofstream archivo;
+    archivo.open(ruta_salida);
 
+    if (archivo.is_open())
+        archivo.close();
+    else if (ruta_salida != "") {
+        std::cout << "No se pudo abrir la ruta de guardado predefinida: " << ruta_salida << "\n" << std::endl;
+        ruta_salida = "";
+    }
+}

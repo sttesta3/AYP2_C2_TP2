@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENU_HPP
+#define MENU_HPP
 
 #include <iostream>
 #include <string.h>
@@ -7,6 +7,9 @@
 
 #include "eventos.hpp"
 #include "inventario.hpp"
+
+static std::string ruta_entrada = "../../../TP1/test_csv/inv_+15.csv";
+static std::string ruta_salida = "../../../TP1/test_csv/inv_nuevo.csv";
 
 // OPCIONES PARA MENSAJE DE AYUDA
 const size_t MENSAJE_AYUDA_INICIAL = 0;
@@ -102,12 +105,18 @@ class Menu {
         // Pre: - 
         // Post: Consulta si desea guardar
         bool solicitar_guardado(void);
-        // Pre: carga = true -> Archivo de carga, else archivo de guardado
-        // Post: Solicita forzado un archivo valido. Si el archivo de guardado no es encontrado, crea uno nuevo
-        void solicitar_archivo(bool carga);
-        // Pre: bool. True = archivo entrada, False = archivo salida
-        // Post: Validar archivo 
-        void validar_ruta_predefinida(bool ruta);
+        // Pre: -
+        // Post: Solicita forzado un archivo valido
+        void solicitar_archivo_carga();
+        // Pre: -
+        // Post: Solicita forzado un archivo valido. Si no encuentra crea uno nuevo
+        void solicitar_archivo_guardado();
+        // Pre: 
+        // Post: Valida ruta predefinida de carga 
+        void validar_ruta_predefinida_carga();
+        // Pre: 
+        // Post: Valida ruta predefinida de guardado 
+        void validar_ruta_predefinida_guardado();
         // Pre: indice = 0 (carga), 1 (guardado), 2 (sobre escribir)
         // Post: Consulta forzada de S/N
         void solicitar_forzado(size_t indice);
@@ -140,4 +149,4 @@ class Menu {
 
 };
 
-#endif // MENU_H
+#endif // MENU_HPP
