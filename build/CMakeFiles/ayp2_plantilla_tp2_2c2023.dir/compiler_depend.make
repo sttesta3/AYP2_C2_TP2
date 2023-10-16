@@ -4,10 +4,7 @@
 CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: ../main.cpp \
   /usr/include/stdc-predef.h \
   ../include/Menu.hpp \
-  /usr/include/c++/11/fstream \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/iostream \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/features.h \
@@ -20,6 +17,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: ../main.cpp \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/c++/11/pstl/pstl_config.h \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/bits/stringfwd.h \
   /usr/include/c++/11/bits/memoryfwd.h \
   /usr/include/c++/11/bits/postypes.h \
@@ -179,14 +179,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: ../main.cpp \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
   /usr/include/c++/11/bits/locale_facets.tcc \
   /usr/include/c++/11/bits/basic_ios.tcc \
-  /usr/include/c++/11/ostream \
   /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  /usr/include/c++/11/bits/codecvt.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc \
-  /usr/include/c++/11/iostream \
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/include/c++/11/math.h \
@@ -222,15 +217,17 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: ../main.cpp \
   ../include/inventario.hpp \
   ../include/lista_de.hpp \
   ../include/nodo_de.hpp \
-  ../include/Item.hpp
+  ../include/Item.hpp \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc
 
 CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/stdc-predef.h \
   ../include/Menu.hpp \
-  /usr/include/c++/11/fstream \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/iostream \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/features.h \
@@ -243,6 +240,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/c++/11/pstl/pstl_config.h \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/bits/stringfwd.h \
   /usr/include/c++/11/bits/memoryfwd.h \
   /usr/include/c++/11/bits/postypes.h \
@@ -402,14 +402,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
   /usr/include/c++/11/bits/locale_facets.tcc \
   /usr/include/c++/11/bits/basic_ios.tcc \
-  /usr/include/c++/11/ostream \
   /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  /usr/include/c++/11/bits/codecvt.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc \
-  /usr/include/c++/11/iostream \
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/include/c++/11/math.h \
@@ -445,7 +440,12 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   ../include/inventario.hpp \
   ../include/lista_de.hpp \
   ../include/nodo_de.hpp \
-  ../include/Item.hpp
+  ../include/Item.hpp \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc
 
 CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/evento.cpp.o: ../src/evento.cpp \
   /usr/include/stdc-predef.h \
@@ -968,7 +968,12 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/inventario.cpp.o: ../src/inventario
   /usr/include/c++/11/bits/basic_ios.tcc \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc
 
 CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
   /usr/include/stdc-predef.h \
@@ -1155,6 +1160,12 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 ../src/evento.cpp:
 
+/usr/include/c++/11/bits/fstream.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
+
 ../include/nodo_de.hpp:
 
 ../include/inventario.hpp:
@@ -1191,13 +1202,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/string.h:
 
-/usr/include/c++/11/bits/fstream.tcc:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
-
 /usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/istream:
 
 /usr/include/c++/11/bits/basic_ios.tcc:
 
@@ -1301,8 +1308,6 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/c++/11/typeinfo:
 
-/usr/include/c++/11/istream:
-
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
 /usr/include/c++/11/bits/exception_defines.h:
@@ -1347,23 +1352,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/include/c++/11/debug/assertions.h:
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/c++/11/ios:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
-
-/usr/include/c++/11/bits/ostream_insert.h:
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
@@ -1373,15 +1364,17 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/c++/11/iosfwd:
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
-/usr/include/c++/11/bits/codecvt.h:
+/usr/include/c++/11/bits/ostream_insert.h:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
+/usr/include/c++/11/debug/assertions.h:
 
-/usr/include/c++/11/ext/type_traits.h:
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/c++/11/bits/stl_function.h:
 
@@ -1391,9 +1384,23 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/stdc-predef.h:
 
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/c++/11/ios:
+
+/usr/include/c++/11/bits/alloc_traits.h:
+
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/11/bits/char_traits.h:
+
+/usr/include/c++/11/bits/allocator.h:
+
+/usr/include/c++/11/pstl/pstl_config.h:
+
+/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
@@ -1402,6 +1409,16 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/c++/11/ext/type_traits.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
+
+/usr/include/c++/11/iosfwd:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
 
 ../src/inventario.cpp:
 
@@ -1417,21 +1434,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
-
-/usr/include/c++/11/bits/allocator.h:
-
-/usr/include/c++/11/pstl/pstl_config.h:
-
-/usr/include/c++/11/bits/alloc_traits.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/c++/11/bits/memoryfwd.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
@@ -1591,9 +1596,9 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
 
-/usr/include/c++/11/iostream:
-
 /usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/c++/11/iostream:
 
 /usr/include/c++/11/backward/binders.h:
 

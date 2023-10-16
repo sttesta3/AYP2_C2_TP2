@@ -2,8 +2,7 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/main.cpp \
  /usr/include/stdc-predef.h \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/Menu.hpp \
- /usr/include/c++/11/fstream /usr/include/c++/11/istream \
- /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
+ /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -14,7 +13,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
- /usr/include/c++/11/pstl/pstl_config.h \
+ /usr/include/c++/11/pstl/pstl_config.h /usr/include/c++/11/ostream \
+ /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/memoryfwd.h /usr/include/c++/11/bits/postypes.h \
  /usr/include/c++/11/cwchar /usr/include/wchar.h \
@@ -145,13 +145,10 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /usr/include/c++/11/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
  /usr/include/c++/11/bits/locale_facets.tcc \
- /usr/include/c++/11/bits/basic_ios.tcc /usr/include/c++/11/ostream \
- /usr/include/c++/11/bits/ostream.tcc \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/iostream \
- /usr/include/string.h /usr/include/strings.h /usr/include/c++/11/math.h \
+ /usr/include/c++/11/bits/basic_ios.tcc \
+ /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
+ /usr/include/c++/11/bits/istream.tcc /usr/include/string.h \
+ /usr/include/strings.h /usr/include/c++/11/math.h \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -182,4 +179,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/inventario.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/lista_de.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo_de.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/Item.hpp
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/Item.hpp \
+ /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc

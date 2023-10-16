@@ -6,27 +6,21 @@ std::string ruta_salida = "";
 Menu::Menu(){
     this->validar_ruta_predefinida(true);
     this->validar_ruta_predefinida(false);
+}
 
+Menu::~Menu(){    
+    std::cout << "¡Hasta luego!\n" << std::endl;
+}
+
+void Menu::juego(void){
     // CARGAR desde archivo
     if (ruta_entrada == "")
         this->solicitar_carga();
 
     if (ruta_entrada != "")
         this->cargar_archivo();
-}
 
-Menu::~Menu(){
-    // GUARDAR archivo
-    if (ruta_salida == "")
-        this->solicitar_guardado();
 
-    if (ruta_salida != "")
-        this->guardar_archivo();
-    
-    std::cout << "¡Hasta luego!\n" << std::endl;
-}
-
-void Menu::juego(void){
     // LOOP DE ITERACION
     while (this->entrada_usuario.compare(OPCION_SALIR) ){
         this->solicitar_entrada("MENU INICIAL> Operar sobre inventario/destino: ");
@@ -44,6 +38,13 @@ void Menu::juego(void){
         else if (this->entrada_usuario != OPCION_SALIR)
             this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
     }
+
+    // GUARDAR archivo
+    if (ruta_salida == "")
+        this->solicitar_guardado();
+
+    if (ruta_salida != "")
+        this->guardar_archivo();
 }
 
 void Menu::interaccion_inventario(void){
@@ -149,33 +150,38 @@ void Menu::solicitar_repeticiones_evento(){
 
 void Menu::alta(){
     // SOLICITAR INPUT A USUARIO
-    if (this->inventario.tamanio() < TAMANIO_MAXIMO){
-        Item alta = Item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
-        this->inventario.alta(alta);
-    }
-    else
-        std::cout << "Ha alcanzado el maximo tamanio para el inventario\n" << std::endl;
-}
-
-void Menu::alta(std::string nombre, std::string tipo){
-    if (this->inventario.tamanio() < TAMANIO_MAXIMO){
-        Item alta = Item(nombre,tipo);
-        this->inventario.alta(alta);
-    }
-    else
-        std::cout << "Ha alcanzado el maximo tamanio para el inventario\n" << std::endl;
+    Item alta = Item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
+    if (!(this->inventario.alta(alta)))
+        std::cout << "Cantidad maxima de items alcanzada. El item NO será agregado" << std::endl;
 }
 
 void Menu::baja(){
+    // Se consulta tamaño porque seria raro que te pida un item y que no lo pueda agregar
     if (this->inventario.tamanio() == 0)
         std::cout << "Inventario vacio" << std::endl;
-    else
-        this->inventario.baja(this->solicitar_nombre_item());    
+    else{
+        std::string nombre_item = this->solicitar_nombre_item();
+        size_t resultado = this->inventario.baja(nombre_item);    
+        if (resultado == 1)
+            std::cout << "Item '" << nombre_item << "' no encontrado\n" << std::endl;
+    }
 }
 
 void Menu::consulta(){
     this->inventario.consulta();
     std::cout << std::endl;
+}
+
+void Menu::cargar_archivo(){
+    size_t resultado = this->inventario.cargar_archivo(ruta_entrada);
+    if (resultado == 1){
+        std::cout << "Se excedio el maximo de elementos en la carga." << std::endl;
+        std::cout << "Los elementos del 15avo en adelante fueron descartados\n." << std::endl;
+    }
+}
+
+void Menu::guardar_archivo(){
+    this->inventario.guardar_archivo(ruta_salida);
 }
 
 //.........................................................................................
@@ -343,36 +349,6 @@ size_t Menu::string_len(std::string string){
 //............. FUNCIONES DE MANEJO DE ARCHVIOS
 //.........................................................................................
 
-void Menu::cargar_archivo(){
-    if (this->inventario.tamanio() == 15){
-        std::cout << "Su archivo alcanzó la cantidad maxima de items" << std::endl;
-        std::cout << "Todos los items del 15avo en adelante no serán cargados\n" << std::endl;
-    }
-
-    std::ifstream archivo_entrada;
-    std::string linea;
-
-    archivo_entrada.open(ruta_entrada);
-    
-    while (getline(archivo_entrada,linea) && this->inventario.tamanio() < 15){
-        std::string nombre = "";
-        std::string tipo = "";
-
-        if ( this->procesar_linea_archivo(linea,nombre,tipo) )
-            this->alta(nombre,tipo);
-    }
-    archivo_entrada.close();
-
-}
-
-void Menu::guardar_archivo(){
-    std::ofstream archivo;
-    archivo.open(ruta_salida);
-    while (this->inventario.tamanio() > 0)
-        archivo << this->inventario.baja() << std::endl;
-    archivo.close();
-}
-
 void Menu::validar_ruta_predefinida(bool entrada_salida){
     std::fstream archivo;
     (entrada_salida) ? archivo.open(ruta_entrada) : archivo.open(ruta_salida);
@@ -383,35 +359,4 @@ void Menu::validar_ruta_predefinida(bool entrada_salida){
         (entrada_salida) ? ruta_entrada = "" : ruta_salida = "" ;
 }
 
-bool Menu::procesar_linea_archivo(std::string linea, std::string &nombre, std::string &tipo){
-    size_t i = 0;
-    size_t palabras = 0;
-
-    while ( ( linea[i] != '\0' && linea[i] != '\n' ) && palabras < 2){
-        if ( linea[i] != ',')
-            (palabras == 0) ? nombre += linea[i] : tipo += linea[i];
-        else
-            palabras++;
-    
-        i++;
-    }
-    
-    return analisis_linea_archivo(palabras,linea,tipo);
-}
-
-bool Menu::analisis_linea_archivo(size_t palabras, std::string linea, std::string tipo){
-    bool resultado = true;
-    if (palabras == 0 || palabras >= 2){
-        std::cout << "ERROR: Linea mal formateada (se descarta la linea)" << std::endl;
-        std::cout << "Linea invalida: " << linea << "\n" <<std::endl;
-        resultado = false;
-    }
-    else if ((tipo != TIPO_CURATIVO) && (tipo != TIPO_MUNICION) && (tipo != TIPO_PUZZLE)){
-        std::cout << "ERROR: Tipo de item invalido (se descarta la linea)" << std::endl;
-        std::cout << "Linea invalida: " << linea << "\n" << std::endl;
-        resultado = false;
-    }
-
-    return resultado;
-}
 
