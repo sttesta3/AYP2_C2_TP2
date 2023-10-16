@@ -173,7 +173,7 @@ void Menu::cargar_archivo(){
     size_t resultado = this->inventario.cargar_archivo(ruta_entrada);
     if (resultado == 1){
         std::cout << "Se excedio el maximo de elementos en la carga." << std::endl;
-        std::cout << "Los elementos del 15avo en adelante fueron descartados.\n" << std::endl;
+        std::cout << "Los items del 15avo en adelante fueron descartados.\n" << std::endl;
     }
 }
 
