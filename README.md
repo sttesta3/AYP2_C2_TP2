@@ -21,5 +21,4 @@ Para ejecutar los tests, basta con cargar el **CMakeLists.txt** que se encuentra
 
 En la carpeta src/ van a encontrar los archivos .cpp del proyecto.
 En la carpeta include/ van a encontrar los headers del proyecto.
-Es decisión del estudiante el cómo y donde se guardan los archivos **save_file.csv**, con la consideración de que se
-deben abrir usando rutas relativas.
+Es decisión del estudiante el cómo y donde se guardan los archivos **save_file.csv**, con la consideración de que se deben abrir usando rutas relativas.

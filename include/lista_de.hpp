@@ -103,8 +103,6 @@ Nodo_de<T>* Lista_de<T>::obtener_nodo(size_t indice){
     if (indice >= this->tamanio())
         throw Lista_exception();
     
-    // Si esta mas cerca del principio, iniciar desde ahi. Caso contrario desde el final
-//    bool empezar_del_inicio = ( indice <= ( this->tamanio() / 2) );
     bool empezar_del_inicio = ( indice <= ( this->tamanio() / 2) );
 
     Nodo_de<T>* posicion = (empezar_del_inicio) ? this->primer_nodo : this->ultimo_nodo;
@@ -134,31 +132,29 @@ void Lista_de<T>::alta(T dato, size_t indice){
     if (indice > this->tamanio())
         throw Lista_exception();
 
-    Nodo_de<T>* nuevo;
+    // Crear nodo nuevo
+    Nodo_de<T>* nuevo;  
     if (this->vacio()){
         nuevo = new Nodo_de(dato);
-        this->primer_nodo = nuevo;
-        this->ultimo_nodo = nuevo;
+        this->reiniciar_cursor(true);
     }
-    else if (indice == 0) {
-        nuevo = new Nodo_de(dato,this->primer_nodo->obtener_anterior(),this->primer_nodo);
-        this->primer_nodo->cambiar_anterior(nuevo);
-        this->primer_nodo = nuevo;
-    }
-    else if (indice == this->cantidad_datos){
-        nuevo = new Nodo_de(dato,this->ultimo_nodo,this->ultimo_nodo->obtener_siguiente());
-        this->ultimo_nodo->cambiar_siguiente(nuevo);
-        this->ultimo_nodo = nuevo;
-    }
+    else if (indice == this->cantidad_datos)
+        nuevo = new Nodo_de(dato,this->ultimo_nodo,this->ultimo_nodo->obtener_siguiente());        
     else {
         Nodo_de<T>* posicion = this->obtener_nodo(indice);
         nuevo = new Nodo_de(dato,posicion->obtener_anterior(),posicion);
-        nuevo->obtener_siguiente()->cambiar_anterior(nuevo);
-        nuevo->obtener_anterior()->cambiar_siguiente(nuevo);
     }
 
-    if (this->vacio())
-        this->reiniciar_cursor(true);
+    // Apuntar anterior y siguiente
+    if (nuevo->obtener_siguiente())
+        nuevo->obtener_siguiente()->cambiar_anterior(nuevo);
+    else
+        this->ultimo_nodo = nuevo;
+    
+    if (nuevo->obtener_anterior())
+        nuevo->obtener_anterior()->cambiar_siguiente(nuevo);
+    else
+        this->primer_nodo = nuevo;
 
     this->cantidad_datos += 1;
 }

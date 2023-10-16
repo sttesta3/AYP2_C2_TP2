@@ -8,8 +8,8 @@
 #include "eventos.hpp"
 #include "inventario.hpp"
 
-static std::string ruta_entrada = "../../../TP1/test_csv/inv_+15.csv";
-static std::string ruta_salida = "../../../TP1/test_csv/inv_nuevo.csv";
+static std::string ruta_entrada = "";
+static std::string ruta_salida = "";
 
 // OPCIONES PARA MENSAJE DE AYUDA
 const size_t MENSAJE_AYUDA_INICIAL = 0;

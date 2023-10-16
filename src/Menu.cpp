@@ -244,7 +244,7 @@ void Menu::solicitar_forzado(size_t indice){
 
     this->solicitar_entrada(mensaje);
     while (this->entrada_usuario != "S" && this->entrada_usuario != "N"){
-        std::cout << "Entrada invalida. Favor reingresar" << std::endl;
+        std::cout << "Entrada invalida. Favor reingresar\n" << std::endl;
         this->solicitar_entrada(mensaje);
     }
 }
