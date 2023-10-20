@@ -13,77 +13,59 @@ void Menu::juego(void){
     // CARGAR desde archivo
     if (ruta_entrada == "")
         this->solicitar_carga();
-
     if (ruta_entrada != "")
-        this->cargar_archivo();
-
+        this->cargar_archivo_inventario();
 
     // LOOP DE ITERACION
-    while (this->entrada_usuario.compare(OPCION_SALIR) ){
+    do {
         this->solicitar_entrada("MENU INICIAL> Operar sobre inventario/destino: ");
 
-        if (this->entrada_usuario == OPCION_DESTINO){
-            this->interaccion_destino();
-            this->entrada_usuario = "";
+        switch ( OPCIONES_MENU[this->entrada_usuario] ){
+            case 0: this->interaccion_destino(); break;
+            case 1: this->interaccion_inventario(); break;
+            case 2: this->mensaje_de_ayuda(MENSAJE_AYUDA_INICIAL); break;
+            default: this->mensaje_de_ayuda(MENSAJE_ERROR);
         }
-        else if (this->entrada_usuario == OPCION_INVENTARIO){
-            this->interaccion_inventario();
-            this->entrada_usuario = "";
-        }
-        else if (this->entrada_usuario == OPCION_AYUDA)
-            this->mensaje_de_ayuda(MENSAJE_AYUDA_INICIAL);
-        else if (this->entrada_usuario != OPCION_SALIR)
-            this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
-    }
+    } while (this->entrada_usuario != OPCION_SALIR );
 
     // GUARDAR archivo
     if (ruta_salida == "")
         this->solicitar_guardado();
-
     if (ruta_salida != "")
-        this->guardar_archivo();
+        this->guardar_archivo_inventario();
 }
 
 void Menu::interaccion_inventario(void){
-    // LOOP DE ITERACION
-    bool repetir = true;
     do {
         this->solicitar_entrada("INVENTARIO> Accion sobre el inventario: ");
 
-        if (this->entrada_usuario == OPCION_INVENTARIO_ALTA)
-            this->alta();
-        else if (this->entrada_usuario == OPCION_INVENTARIO_BAJA)
-            this->baja();
-        else if (this->entrada_usuario == OPCION_INVENTARIO_CONSULTA)
-            this->consulta();
-        else if (this->entrada_usuario == OPCION_AYUDA)
-            this->mensaje_de_ayuda(MENSAJE_AYUDA_INVENTARIO);
-        else if (this->entrada_usuario != OPCION_SALIR)
-            this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
-        else
-            repetir = false;
+        std::cout << "DEBUG: " << OPCIONES_MENU_INVENTARIO[this->entrada_usuario] << std::endl;
+        switch( OPCIONES_MENU_INVENTARIO[this->entrada_usuario] ){
+            case 0: this->alta_inventario(); break;
+            case 1: this->baja_inventario(); break;
+            case 2: this->consulta_inventario(); break;
+            case 3: this->mensaje_de_ayuda(MENSAJE_AYUDA_INVENTARIO); break;
+            default: this->mensaje_de_ayuda(MENSAJE_ERROR);
+        }
+    } while (this->entrada_usuario != OPCION_SALIR);
 
-    } while (repetir);
+    this->entrada_usuario = "";
 }
 
 void Menu::interaccion_destino(void){
-    // LOOP DE ITERACION
-    bool repetir = true;    
     do {
         this->solicitar_entrada("DESTINO> Accion sobre el destino: ");
-        if (this->entrada_usuario == OPCION_DESTINO_AGREGAR)
-            this->agregar_evento();
-        else if (this->entrada_usuario == OPCION_DESTINO_DEFINIR)
-            this->definir_destino();
-        else if (this->entrada_usuario == OPCION_DESTINO_MOSTRAR)
-            this->mostrar_suceso();
-        else if (this->entrada_usuario == OPCION_AYUDA)
-            this->mensaje_de_ayuda(MENSAJE_AYUDA_DESTINO);
-        else if (this->entrada_usuario != OPCION_SALIR)
-            this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
-        else
-            repetir = false;
-    } while (repetir);
+        
+        switch ( OPCIONES_MENU_DESTINO[ this->entrada_usuario ] ){
+            case 0: this->agregar_evento(); break;
+            case 1: this->definir_destino(); break;
+            case 2: this->mostrar_suceso(); break;
+            case 3: this->mensaje_de_ayuda(MENSAJE_AYUDA_DESTINO); break;
+            this->mensaje_de_ayuda(MENSAJE_ERROR);
+        }
+    } while (this->entrada_usuario != OPCION_SALIR);
+
+    this->entrada_usuario = "";
 }
 
 //.........................................................................................
@@ -94,8 +76,7 @@ void Menu::agregar_evento(){
     this->solicitar_evento();
     Evento nuevo = Evento( this->entrada_usuario );
     this->solicitar_repeticiones_evento();
-    for (int i = 0; i < stoi(this->entrada_usuario) ; i++)
-        this->eventos.acolar(nuevo);
+    this->eventos.acolar(nuevo,stoi(this->entrada_usuario) );
 }
 
 void Menu::definir_destino(){
@@ -107,15 +88,7 @@ void Menu::definir_destino(){
 }
 
 void Menu::mostrar_suceso(){
-    std::string perfil = this->eventos.mostrar_destino();
-    if (perfil == PERFIL_USUARIO_DESORIENTADO)
-        std::cout << "Aumento de factores ambientales\n" << std::endl;
-    else if (perfil == PERFIL_USUARIO_PRECAVIDO)
-        std::cout << "Aumento en la cantidad de enemigos\n" << std::endl;
-    else if (perfil == PERFIL_USUARIO_ASUSTADO)
-        std::cout << "Evento Pyramid Head adelantado\n" << std::endl;
-    else
-        std::cout << "Comportamiento aún no definido\n" << std::endl;
+    std::cout << MENSAJES_SUCESOS[ this->eventos.mostrar_destino() ] << "\n" << std::endl;
 }
 
 void Menu::solicitar_evento(){
@@ -145,14 +118,14 @@ void Menu::solicitar_repeticiones_evento(){
 //............. FUNCIONES DE MANEJO DE INVENTARIO (TP 1)
 //.........................................................................................
 
-void Menu::alta(){
+void Menu::alta_inventario(){
     // SOLICITAR INPUT A USUARIO
     Item alta = Item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
     if (!(this->inventario.alta(alta)))
         std::cout << "Cantidad maxima de items alcanzada. El item NO será agregado" << std::endl;
 }
 
-void Menu::baja(){
+void Menu::baja_inventario(){
     // Se consulta tamaño porque seria raro que te pida un item y que no lo pueda agregar
     if (this->inventario.tamanio() == 0)
         std::cout << "Inventario vacio" << std::endl;
@@ -164,12 +137,12 @@ void Menu::baja(){
     }
 }
 
-void Menu::consulta(){
+void Menu::consulta_inventario(){
     this->inventario.consulta();
     std::cout << std::endl;
 }
 
-void Menu::cargar_archivo(){
+void Menu::cargar_archivo_inventario(){
     size_t resultado = this->inventario.cargar_archivo(ruta_entrada);
     if (resultado == 1){
         std::cout << "Se excedio el maximo de elementos en la carga." << std::endl;
@@ -177,7 +150,7 @@ void Menu::cargar_archivo(){
     }
 }
 
-void Menu::guardar_archivo(){
+void Menu::guardar_archivo_inventario(){
     this->inventario.guardar_archivo(ruta_salida);
 }
 
@@ -235,12 +208,7 @@ void Menu::solicitar_archivo_guardado(){
 }
 
 void Menu::solicitar_forzado(size_t indice){
-    std::string mensaje;
-    switch (indice){
-        case CONSULTA_CARGA: mensaje = "¿Desea cargar inventario desde savefile?[S/N]: "; break;
-        case CONSULTA_GUARDADO: mensaje = "¿Desea guardar inventario en savefile?[S/N]: ";   break;
-        case CONSULTA_SOBREESCRITURA: mensaje = "¿Desea sobreescribir archivo de entrada?[S/N]: "; break;
-    }
+    std::string mensaje = MENSAJE_FORZADO[indice];
 
     this->solicitar_entrada(mensaje);
     while (this->entrada_usuario != "S" && this->entrada_usuario != "N"){
@@ -312,7 +280,11 @@ void Menu::mensaje_de_ayuda(size_t selector){
         case MENSAJE_ERROR_ITEM: {
             std::cout << " - Entrada invalida, favor reingresar" << std::endl;
             std::cout << " - Tipo de item existentes: " << TIPO_CURATIVO << ", " << TIPO_MUNICION << " y " << TIPO_PUZZLE << "\n" << std::endl;
-        }; break;
+        }; 
+        case MENSAJE_ERROR: {
+            if (this->entrada_usuario != OPCION_SALIR)
+                this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
+        };
     }
 }
 
@@ -342,6 +314,7 @@ size_t Menu::string_len(std::string string){
         i++;
     return i;
 }
+
 //.........................................................................................
 //............. FUNCIONES DE MANEJO DE ARCHVIOS
 //.........................................................................................

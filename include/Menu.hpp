@@ -3,46 +3,22 @@
 
 #include <iostream>
 #include <string.h>
+#include <map>
 #include <math.h>
 
+#include "constantes_menu.hpp"
 #include "eventos.hpp"
 #include "inventario.hpp"
 
 static std::string ruta_entrada = "";
 static std::string ruta_salida = "";
 
-// OPCIONES PARA MENSAJE DE AYUDA
-const size_t MENSAJE_AYUDA_INICIAL = 0;
-const size_t MENSAJE_AYUDA_INVENTARIO = 1;
-const size_t MENSAJE_AYUDA_DESTINO = 2;
-const size_t MENSAJE_AYUDA_ERROR = 3;
-const size_t MENSAJE_ERROR_ITEM = 4;
-
-// OPCIONES DE MENU
-const std::string OPCION_AYUDA = "AYUDA";
-const std::string OPCION_SALIR = "SALIR";
-
-const std::string OPCION_DESTINO = "DESTINO";
-const std::string OPCION_DESTINO_AGREGAR = "AGREGAR_EVENTO";
-const std::string OPCION_DESTINO_DEFINIR = "DEFINIR_DESTINO";
-const std::string OPCION_DESTINO_MOSTRAR = "MOSTRAR_SUCESO";
-
-const std::string OPCION_INVENTARIO = "INVENTARIO";
-const std::string OPCION_INVENTARIO_ALTA = "ALTA";
-const std::string OPCION_INVENTARIO_BAJA = "BAJA";
-const std::string OPCION_INVENTARIO_CONSULTA = "CONSULTA";
-
-// OPCIONES FUNCION DE SOLICITAR FORZADO
-const size_t CONSULTA_CARGA = 0;
-const size_t CONSULTA_GUARDADO = 1;
-const size_t CONSULTA_SOBREESCRITURA = 2;
-
 class Menu {
     private:
         Inventario inventario = Inventario();
         Eventos eventos = Eventos();
         std::string entrada_usuario = "";
-
+        
 //.........................................................................................
 //............. FUNCIONES DE MANEJO DE DESTINO (TP 2)
 //.........................................................................................
@@ -63,19 +39,19 @@ class Menu {
 
         // Pre:
         // Post: Solicita entrada y carga en inventario
-        void alta();
+        void alta_inventario();
         // Pre:
         // Post: Solicita entrada y elimina primer aparicion en inventario
-        void baja();
+        void baja_inventario();
         // Pre:
         // Post: Imprime inventario
-        void consulta();
+        void consulta_inventario();
         // Pre:
         // Post: Inventario -> carga archivo
-        void cargar_archivo();
+        void cargar_archivo_inventario();
         // Pre:
         // Post: Inventario -> guarda archivo
-        void guardar_archivo();
+        void guardar_archivo_inventario();
 
 //.........................................................................................
 //............. FUNCIONES DE MANEJO DE INTERACCION CON USUARIO
@@ -137,7 +113,6 @@ class Menu {
         // Pre: - 
         // Post: String len 
         size_t string_len(std::string string);
-
 
     public:
         Menu();

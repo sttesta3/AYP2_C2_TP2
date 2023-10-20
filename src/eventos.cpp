@@ -1,7 +1,7 @@
 #include "eventos.hpp"
 
 void Eventos::acolar(Evento nuevo){
-    this->eventos.alta(nuevo);
+    return this->acolar(nuevo,1);
 }
 
 void Eventos::acolar(Evento nuevo,size_t repeticiones){
@@ -14,11 +14,10 @@ Evento Eventos::descolar(){
 }
 
 std::string Eventos::definir_destino(){
-    std::string resultado;
     size_t aperturas_mapa = 0;
     size_t guardados = 0;
 
-    while (this->eventos.tamanio() > 0){
+    while (this->eventos.tamanio() > 0 && guardados < 8){
         Evento posicion = this->descolar();
         if (posicion == ACCION_APERTURA_MAPA)
             aperturas_mapa += 1;

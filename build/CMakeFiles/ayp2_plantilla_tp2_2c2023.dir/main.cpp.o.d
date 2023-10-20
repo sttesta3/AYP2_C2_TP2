@@ -148,7 +148,16 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/string.h \
- /usr/include/strings.h /usr/include/c++/11/math.h \
+ /usr/include/strings.h /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/node_handle.h \
+ /usr/include/c++/11/bits/stl_map.h /usr/include/c++/11/tuple \
+ /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/invoke.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/math.h \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -172,10 +181,12 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/constantes_menu.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/eventos.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/cola.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/evento.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/eventos.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/inventario.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/lista_de.hpp \
  /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo_de.hpp \

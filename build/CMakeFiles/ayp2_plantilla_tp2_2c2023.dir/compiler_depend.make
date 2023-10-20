@@ -184,6 +184,19 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/istream.tcc \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_map.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/stl_multimap.h \
+  /usr/include/c++/11/bits/erase_if.h \
   /usr/include/c++/11/math.h \
   /usr/include/c++/11/cmath \
   /usr/include/math.h \
@@ -210,10 +223,12 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/tr1/poly_hermite.tcc \
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
+  ../include/constantes_menu.hpp \
   ../include/eventos.hpp \
   ../include/cola.hpp \
   ../include/nodo.hpp \
   ../include/evento.hpp \
+  ../include/eventos.hpp \
   ../include/inventario.hpp \
   ../include/lista_de.hpp \
   ../include/nodo_de.hpp \
@@ -407,6 +422,19 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/c++/11/bits/istream.tcc \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_map.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/stl_multimap.h \
+  /usr/include/c++/11/bits/erase_if.h \
   /usr/include/c++/11/math.h \
   /usr/include/c++/11/cmath \
   /usr/include/math.h \
@@ -433,10 +461,12 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/c++/11/tr1/poly_hermite.tcc \
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
+  ../include/constantes_menu.hpp \
   ../include/eventos.hpp \
   ../include/cola.hpp \
   ../include/nodo.hpp \
   ../include/evento.hpp \
+  ../include/eventos.hpp \
   ../include/inventario.hpp \
   ../include/lista_de.hpp \
   ../include/nodo_de.hpp \
@@ -1168,11 +1198,13 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 ../include/nodo_de.hpp:
 
-../include/inventario.hpp:
-
 ../include/cola.hpp:
 
 ../include/eventos.hpp:
+
+../include/inventario.hpp:
+
+../include/constantes_menu.hpp:
 
 /usr/include/c++/11/tr1/riemann_zeta.tcc:
 
@@ -1186,8 +1218,6 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/c++/11/bits/specfun.h:
 
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
@@ -1199,6 +1229,18 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
 /usr/include/math.h:
+
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/c++/11/array:
+
+/usr/include/c++/11/bits/stl_relops.h:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/c++/11/bits/stl_map.h:
 
 /usr/include/string.h:
 
@@ -1256,6 +1298,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
+/usr/include/c++/11/utility:
+
 /usr/include/errno.h:
 
 /usr/include/c++/11/cerrno:
@@ -1275,6 +1319,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
 
 /usr/include/endian.h:
 
@@ -1328,6 +1374,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
+/usr/include/c++/11/map:
+
 /usr/include/c++/11/bits/range_access.h:
 
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
@@ -1380,6 +1428,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/c++/11/ext/numeric_traits.h:
 
+/usr/include/c++/11/bits/stl_multimap.h:
+
 /usr/include/features.h:
 
 /usr/include/stdc-predef.h:
@@ -1405,6 +1455,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/c++/11/bits/node_handle.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
@@ -1452,6 +1504,8 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 
 /usr/include/c++/11/bits/postypes.h:
 
+/usr/include/c++/11/bits/invoke.h:
+
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/c++/11/exception:
@@ -1469,6 +1523,10 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o: ../src/item.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 ../include/evento.hpp:
+
+/usr/include/c++/11/tuple:
+
+/usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/c++/11/type_traits:
 
