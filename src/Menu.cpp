@@ -21,9 +21,9 @@ void Menu::juego(void){
         this->solicitar_entrada("MENU INICIAL> Operar sobre inventario/destino: ");
 
         switch ( OPCIONES_MENU[this->entrada_usuario] ){
-            case 0: this->interaccion_destino(); break;
-            case 1: this->interaccion_inventario(); break;
-            case 2: this->mensaje_de_ayuda(MENSAJE_AYUDA_INICIAL); break;
+            case 1: this->interaccion_destino(); break;
+            case 2: this->interaccion_inventario(); break;
+            case 3: this->mensaje_de_ayuda(MENSAJE_AYUDA_INICIAL); break;
             default: this->mensaje_de_ayuda(MENSAJE_ERROR);
         }
     } while (this->entrada_usuario != OPCION_SALIR );
@@ -39,13 +39,12 @@ void Menu::interaccion_inventario(void){
     do {
         this->solicitar_entrada("INVENTARIO> Accion sobre el inventario: ");
 
-        std::cout << "DEBUG: " << OPCIONES_MENU_INVENTARIO[this->entrada_usuario] << std::endl;
         switch( OPCIONES_MENU_INVENTARIO[this->entrada_usuario] ){
-            case 0: this->alta_inventario(); break;
-            case 1: this->baja_inventario(); break;
-            case 2: this->consulta_inventario(); break;
-            case 3: this->mensaje_de_ayuda(MENSAJE_AYUDA_INVENTARIO); break;
-            default: this->mensaje_de_ayuda(MENSAJE_ERROR);
+            case 0: this->mensaje_de_ayuda(MENSAJE_ERROR); break;
+            case 1: this->alta_inventario(); break;
+            case 2: this->baja_inventario(); break;
+            case 3: this->consulta_inventario(); break;
+            case 4: this->mensaje_de_ayuda(MENSAJE_AYUDA_INVENTARIO); break;
         }
     } while (this->entrada_usuario != OPCION_SALIR);
 
@@ -57,10 +56,10 @@ void Menu::interaccion_destino(void){
         this->solicitar_entrada("DESTINO> Accion sobre el destino: ");
         
         switch ( OPCIONES_MENU_DESTINO[ this->entrada_usuario ] ){
-            case 0: this->agregar_evento(); break;
-            case 1: this->definir_destino(); break;
-            case 2: this->mostrar_suceso(); break;
-            case 3: this->mensaje_de_ayuda(MENSAJE_AYUDA_DESTINO); break;
+            case 1: this->agregar_evento(); break;
+            case 2: this->definir_destino(); break;
+            case 3: this->mostrar_suceso(); break;
+            case 4: this->mensaje_de_ayuda(MENSAJE_AYUDA_DESTINO); break;
             this->mensaje_de_ayuda(MENSAJE_ERROR);
         }
     } while (this->entrada_usuario != OPCION_SALIR);
@@ -280,7 +279,11 @@ void Menu::mensaje_de_ayuda(size_t selector){
         case MENSAJE_ERROR_ITEM: {
             std::cout << " - Entrada invalida, favor reingresar" << std::endl;
             std::cout << " - Tipo de item existentes: " << TIPO_CURATIVO << ", " << TIPO_MUNICION << " y " << TIPO_PUZZLE << "\n" << std::endl;
-        }; 
+        }; break;
+        case MENSAJE_ERROR_EVENTOS: {
+            std::cout << " - Entrada invalida. Favor reingresar" << std::endl;
+            std::cout << " - Eventos programados: " << ACCION_APERTURA_MAPA << " y " << ACCION_GUARDADO << "\n" << std::endl;
+        }; break;
         case MENSAJE_ERROR: {
             if (this->entrada_usuario != OPCION_SALIR)
                 this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
