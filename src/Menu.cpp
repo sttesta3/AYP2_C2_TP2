@@ -93,8 +93,7 @@ void Menu::mostrar_suceso(){
 void Menu::solicitar_evento(){
     this->solicitar_entrada("Evento experimentado: ");
     while (this->entrada_usuario != ACCION_APERTURA_MAPA && this->entrada_usuario != ACCION_GUARDADO){
-        std::cout << " - Entrada invalida. Favor reingresar" << std::endl;
-        std::cout << " - Eventos programados: " << ACCION_APERTURA_MAPA << " y " << ACCION_GUARDADO << "\n" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_EVENTOS);
         this->solicitar_entrada("Evento experimentado: ");
     }
 }
