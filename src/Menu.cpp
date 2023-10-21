@@ -60,7 +60,7 @@ void Menu::interaccion_destino(void){
             case 2: this->definir_destino(); break;
             case 3: this->mostrar_suceso(); break;
             case 4: this->mensaje_de_ayuda(MENSAJE_AYUDA_DESTINO); break;
-            this->mensaje_de_ayuda(MENSAJE_ERROR);
+            default: this->mensaje_de_ayuda(MENSAJE_ERROR);
         }
     } while (this->entrada_usuario != OPCION_SALIR);
 
@@ -123,7 +123,7 @@ void Menu::alta_inventario(){
         this->inventario.alta(alta);
     }
     else
-        std::cout << "Tamanio maximo ('"<< TAMANIO_MAXIMO <<") alcanzado" << std::endl;
+        std::cout << "Tamanio maximo ("<< TAMANIO_MAXIMO <<") alcanzado\n" << std::endl;
 }
 
 void Menu::baja_inventario(){

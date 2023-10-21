@@ -6,7 +6,7 @@ void Eventos::acolar(Evento nuevo){
 
 void Eventos::acolar(Evento nuevo,size_t repeticiones){
     for (size_t i = 0; i < repeticiones; i++)
-        this->acolar(nuevo);
+        this->eventos.alta(nuevo);
 }
 
 Evento Eventos::descolar(){
