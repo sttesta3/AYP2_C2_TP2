@@ -10,7 +10,7 @@
 #include "inventario.hpp"
 #include "utils.hpp"
 
-static std::string ruta_entrada = "../../../TP1/test_csv/inv_+15.csv";
+static std::string ruta_entrada = "";
 static std::string ruta_salida = "";
 
 class Menu {
