@@ -16,7 +16,7 @@ const size_t MENSAJE_ERROR_AYUDA = 6;
 const size_t MENSAJE_ERROR_INVALIDO = 7;
 const size_t MENSAJE_ERROR_ARCHIVO = 9;
 const size_t MENSAJE_ERROR_ARCHIVO_PREDEFINIDO = 10;
-
+const size_t MENSAJE_ERROR_INVENTARIO_LLENO = 11;
 
 // OPCIONES DE MENU
 const std::string OPCION_AYUDA = "AYUDA";

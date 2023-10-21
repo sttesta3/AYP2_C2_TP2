@@ -102,7 +102,7 @@ void Menu::solicitar_repeticiones_evento(){
     this->solicitar_entrada("Cantidad de veces experimentado: ");
     size_t numero = str_to_int(this->entrada_usuario);
     while (numero <= 0 || numero > 20){
-        std::cout << " - Entrada invalida. Favor reingresar" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_INVALIDO);
         if (numero <= 0)
             std::cout << " - El numero ingresado debe ser mayor que cero\n" << std::endl;
         else if (numero > 20)
@@ -144,11 +144,8 @@ void Menu::consulta_inventario(){
 }
 
 void Menu::cargar_archivo_inventario(){
-    size_t resultado = this->inventario.cargar_archivo(ruta_entrada);
-    if (resultado == 1){
-        std::cout << "Se excedio el maximo de elementos en la carga." << std::endl;
-        std::cout << "Los items del 15avo en adelante fueron descartados.\n" << std::endl;
-    }
+    if (this->inventario.cargar_archivo(ruta_entrada))
+        this->mensaje_de_ayuda(MENSAJE_ERROR_INVENTARIO_LLENO);
 }
 
 void Menu::guardar_archivo_inventario(){
@@ -262,7 +259,7 @@ void Menu::mensaje_de_ayuda(size_t selector){
             std::cout << " * " << OPCION_SALIR << ": Salir de prueba de funcionalidades\n" << std::endl;
         }; break;
         case MENSAJE_AYUDA_INVENTARIO: {
-            std::cout << " * " << OPCION_INVENTARIO_ALTA << ": Dar de alta nuevo Item en inventario (max 15)" << std::endl;
+            std::cout << " * " << OPCION_INVENTARIO_ALTA << ": Dar de alta nuevo Item en inventario (max "<< TAMANIO_MAXIMO <<")" << std::endl;
             std::cout << " * " << OPCION_INVENTARIO_BAJA << ": Dar de baja Item de inventario" << std::endl;
             std::cout << " * " << OPCION_INVENTARIO_CONSULTA << ": Mostrar inventario" << std::endl;
             std::cout << " * " << OPCION_SALIR << ": Salir de submenu de manejo de inventario\n" << std::endl;
@@ -291,7 +288,11 @@ void Menu::mensaje_de_ayuda(size_t selector){
         }; break;
         case MENSAJE_ERROR_ARCHIVO: std::cout << " - El archivo no pudo ser abierto. Favor reingresar\n" << std::endl; break;
         case MENSAJE_ERROR_INVALIDO: std::cout << " - Entrada invalida. Favor reingresar\n" << std::endl; break;
-        case MENSAJE_ERROR_ARCHIVO_PREDEFINIDO: std::cout << " - No se pudo abrir la ruta de carga predefinida" << std::endl;
+        case MENSAJE_ERROR_ARCHIVO_PREDEFINIDO: std::cout << " - No se pudo abrir la ruta de carga predefinida" << std::endl; break;
+        case MENSAJE_ERROR_INVENTARIO_LLENO: {
+            std::cout << "Se excedio el maximo de elementos en la carga." << std::endl;
+            std::cout << "Los items del "<< TAMANIO_MAXIMO <<"avo en adelante fueron descartados.\n" << std::endl;    
+        }
     }
 }
 
