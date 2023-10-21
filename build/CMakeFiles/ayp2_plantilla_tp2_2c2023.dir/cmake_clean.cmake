@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/inventario.cpp.o.d"
   "CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o"
   "CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/item.cpp.o.d"
+  "CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/utils.cpp.o"
+  "CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/src/utils.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

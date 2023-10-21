@@ -12,7 +12,11 @@ const size_t MENSAJE_AYUDA_DESTINO = 2;
 const size_t MENSAJE_AYUDA_ERROR = 3;
 const size_t MENSAJE_ERROR_ITEM = 4;
 const size_t MENSAJE_ERROR_EVENTOS = 5;
-const size_t MENSAJE_ERROR = 6;
+const size_t MENSAJE_ERROR_AYUDA = 6;
+const size_t MENSAJE_ERROR_INVALIDO = 7;
+const size_t MENSAJE_ERROR_ARCHIVO = 9;
+const size_t MENSAJE_ERROR_ARCHIVO_PREDEFINIDO = 10;
+
 
 // OPCIONES DE MENU
 const std::string OPCION_AYUDA = "AYUDA";

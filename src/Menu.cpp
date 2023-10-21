@@ -21,10 +21,10 @@ void Menu::juego(void){
         this->solicitar_entrada("MENU INICIAL> Operar sobre inventario/destino: ");
 
         switch ( OPCIONES_MENU[this->entrada_usuario] ){
+            case 0: this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR); break;
             case 1: this->interaccion_destino(); break;
             case 2: this->interaccion_inventario(); break;
             case 3: this->mensaje_de_ayuda(MENSAJE_AYUDA_INICIAL); break;
-            default: this->mensaje_de_ayuda(MENSAJE_ERROR);
         }
     } while (this->entrada_usuario != OPCION_SALIR );
 
@@ -40,7 +40,7 @@ void Menu::interaccion_inventario(void){
         this->solicitar_entrada("INVENTARIO> Accion sobre el inventario: ");
 
         switch( OPCIONES_MENU_INVENTARIO[this->entrada_usuario] ){
-            case 0: this->mensaje_de_ayuda(MENSAJE_ERROR); break;
+            case 0: this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR); break;
             case 1: this->alta_inventario(); break;
             case 2: this->baja_inventario(); break;
             case 3: this->consulta_inventario(); break;
@@ -56,7 +56,7 @@ void Menu::interaccion_destino(void){
         this->solicitar_entrada("DESTINO> Accion sobre el destino: ");
         
         switch ( OPCIONES_MENU_DESTINO[ this->entrada_usuario ] ){
-            case 0: this->mensaje_de_ayuda(MENSAJE_ERROR); break;
+            case 0: this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR); break;
             case 1: this->agregar_evento(); break;
             case 2: this->definir_destino(); break;
             case 3: this->mostrar_suceso(); break;
@@ -169,7 +169,7 @@ std::string Menu::solicitar_tipo_item(){
     this->solicitar_entrada("Tipo del item: ");
 
     while( !( (this->entrada_usuario == TIPO_CURATIVO) || (this->entrada_usuario == TIPO_MUNICION) || (this->entrada_usuario == TIPO_PUZZLE) )){
-        this->mensaje_de_ayuda(MENSAJE_ERROR_ITEM);
+        this->mensaje_de_ayuda(MENSAJE_ERROR_ITEM); std::cout << std::endl;
         this->solicitar_entrada("Tipo del item: ");
     }   
 
@@ -187,7 +187,7 @@ void Menu::solicitar_archivo_carga(){
     std::ifstream archivo;
     archivo.open(this->entrada_usuario);
     while (!archivo.is_open()){
-        std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_ARCHIVO);
         this->solicitar_entrada("Ingrese ruta de archivo de carga: ");
         archivo.open(this->entrada_usuario);    
     }   
@@ -200,10 +200,9 @@ void Menu::solicitar_archivo_guardado(){
     std::ofstream archivo;
     archivo.open(this->entrada_usuario);
     while (!archivo.is_open()){
-        std::cout << " - El archivo no pudo ser abierto. favor reingresar\n" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_ARCHIVO);
         this->solicitar_entrada("Ingrese ruta de archivo de guardado: ");
         archivo.open(this->entrada_usuario);    
-
     }   
     archivo.close();
 }
@@ -213,7 +212,7 @@ void Menu::solicitar_forzado(size_t indice){
 
     this->solicitar_entrada(mensaje);
     while (this->entrada_usuario != "S" && this->entrada_usuario != "N"){
-        std::cout << "Entrada invalida. Favor reingresar\n" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_INVALIDO);
         this->solicitar_entrada(mensaje);
     }
 }
@@ -275,49 +274,25 @@ void Menu::mensaje_de_ayuda(size_t selector){
             std::cout << " * " << OPCION_SALIR << ": Salir de submenu de manejo de destino\n" << std::endl;
         }; break;
         case MENSAJE_AYUDA_ERROR: {
-            std::cout << " - Entrada invalida, favor reingresar" << std::endl;
+            this->mensaje_de_ayuda(MENSAJE_ERROR_INVALIDO);
             std::cout << " - Ingrese '"<< OPCION_AYUDA <<"' para ver opciones del sub-menu\n" << std::endl;
         }; break;
         case MENSAJE_ERROR_ITEM: {
-            std::cout << " - Entrada invalida, favor reingresar" << std::endl;
+            this->mensaje_de_ayuda(MENSAJE_ERROR_INVALIDO);
             std::cout << " - Tipo de item existentes: " << TIPO_CURATIVO << ", " << TIPO_MUNICION << " y " << TIPO_PUZZLE << "\n" << std::endl;
         }; break;
         case MENSAJE_ERROR_EVENTOS: {
-            std::cout << " - Entrada invalida. Favor reingresar" << std::endl;
+            this->mensaje_de_ayuda(MENSAJE_ERROR_INVALIDO);
             std::cout << " - Eventos programados: " << ACCION_APERTURA_MAPA << " y " << ACCION_GUARDADO << "\n" << std::endl;
         }; break;
-        case MENSAJE_ERROR: {
+        case MENSAJE_ERROR_AYUDA: {
             if (this->entrada_usuario != OPCION_SALIR)
                 this->mensaje_de_ayuda(MENSAJE_AYUDA_ERROR);
-        };
+        }; break;
+        case MENSAJE_ERROR_ARCHIVO: std::cout << " - El archivo no pudo ser abierto. Favor reingresar\n" << std::endl; break;
+        case MENSAJE_ERROR_INVALIDO: std::cout << " - Entrada invalida. Favor reingresar\n" << std::endl; break;
+        case MENSAJE_ERROR_ARCHIVO_PREDEFINIDO: std::cout << " - No se pudo abrir la ruta de carga predefinida" << std::endl;
     }
-}
-
-size_t Menu::str_to_int(std::string string){
-    size_t largo = string_len(string);
-    size_t i = 0;
-    size_t resultado = 0;
-    
-    if (largo > 2)
-        resultado = -1;
-    else {
-        while ( (int)string[i] >= 48 && (int)string[i] <= 57 && i < largo ){
-            resultado += int(pow(10,largo - 1 -i))*((int)string[i] - 48);
-            i++;
-        }
-        
-        if (((int)string[i] < 48 || (int)string[i] > 57) && i < largo)
-            resultado = -1;
-    }
-
-    return resultado;
-}
-
-size_t Menu::string_len(std::string string){
-    size_t i = 0;
-    while (string[i] != '\0')
-        i++;
-    return i;
 }
 
 //.........................................................................................
@@ -331,7 +306,7 @@ void Menu::validar_ruta_predefinida_carga(){
     if (archivo.is_open())
         archivo.close();
     else if (ruta_entrada != "") {
-        std::cout << "No se pudo abrir la ruta de carga predefinida: " << ruta_entrada << "\n" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_ARCHIVO_PREDEFINIDO);
         ruta_entrada = "";
     }
 }
@@ -343,7 +318,7 @@ void Menu::validar_ruta_predefinida_guardado(){
     if (archivo.is_open())
         archivo.close();
     else if (ruta_salida != "") {
-        std::cout << "No se pudo abrir la ruta de guardado predefinida: " << ruta_salida << "\n" << std::endl;
+        this->mensaje_de_ayuda(MENSAJE_ERROR_ARCHIVO_PREDEFINIDO);
         ruta_salida = "";
     }
 }

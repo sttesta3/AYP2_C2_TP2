@@ -4,11 +4,11 @@
 #include <iostream>
 #include <string.h>
 #include <map>
-#include <math.h>
 
 #include "constantes_menu.hpp"
 #include "eventos.hpp"
 #include "inventario.hpp"
+#include "utils.hpp"
 
 static std::string ruta_entrada = "";
 static std::string ruta_salida = "";
@@ -102,17 +102,6 @@ class Menu {
         // Pre: -
         // Post: Interaccion con usuario para solicitar repeticiones evento (entre 0 y 20)
         void solicitar_repeticiones_evento();
-
-//.........................................................................................
-//............. FUNCIONES GENERALES DE STRING 
-//.........................................................................................
-
-        // Pre: 
-        // Post: Devuelve numero en base 10 o -1 si no es valido
-        size_t str_to_int(std::string string);
-        // Pre: - 
-        // Post: String len 
-        size_t string_len(std::string string);
 
     public:
         Menu();

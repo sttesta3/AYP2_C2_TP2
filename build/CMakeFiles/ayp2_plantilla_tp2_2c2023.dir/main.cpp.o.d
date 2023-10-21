@@ -157,8 +157,23 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/math.h \
- /usr/include/c++/11/cmath /usr/include/math.h \
+ /usr/include/c++/11/bits/erase_if.h \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/constantes_menu.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/eventos.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/cola.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/evento.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/eventos.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/inventario.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/lista_de.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo_de.hpp \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/Item.hpp \
+ /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc \
+ /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/utils.hpp \
+ /usr/include/c++/11/math.h /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
@@ -180,18 +195,4 @@ CMakeFiles/ayp2_plantilla_tp2_2c2023.dir/main.cpp.o: \
  /usr/include/c++/11/tr1/modified_bessel_func.tcc \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
- /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/constantes_menu.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/eventos.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/cola.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/evento.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/eventos.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/inventario.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/lista_de.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/nodo_de.hpp \
- /home/stesta/Desktop/UBA/AYP2/TP2/AYP2_C2_TP2/include/Item.hpp \
- /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc
+ /usr/include/c++/11/tr1/riemann_zeta.tcc
