@@ -117,14 +117,17 @@ void Menu::solicitar_repeticiones_evento(){
 //.........................................................................................
 
 void Menu::alta_inventario(){
-    // SOLICITAR INPUT A USUARIO
-    Item alta = Item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
-    if (!(this->inventario.alta(alta)))
-        std::cout << "Cantidad maxima de items alcanzada. El item NO será agregado" << std::endl;
+    // Se consulta tamaño porque seria raro que te pida un item y que no lo pueda agregar
+    if (this->inventario.tamanio() < TAMANIO_MAXIMO){
+        Item alta = Item(this->solicitar_nombre_item(),this->solicitar_tipo_item());
+        this->inventario.alta(alta);
+    }
+    else
+        std::cout << "Tamanio maximo ('"<< TAMANIO_MAXIMO <<") alcanzado" << std::endl;
 }
 
 void Menu::baja_inventario(){
-    // Se consulta tamaño porque seria raro que te pida un item y que no lo pueda agregar
+    // Se consulta tamaño porque seria raro que te pida un item y que no lo pueda eliminar
     if (this->inventario.tamanio() == 0)
         std::cout << "Inventario vacio" << std::endl;
     else{
