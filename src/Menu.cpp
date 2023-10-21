@@ -56,11 +56,11 @@ void Menu::interaccion_destino(void){
         this->solicitar_entrada("DESTINO> Accion sobre el destino: ");
         
         switch ( OPCIONES_MENU_DESTINO[ this->entrada_usuario ] ){
+            case 0: this->mensaje_de_ayuda(MENSAJE_ERROR); break;
             case 1: this->agregar_evento(); break;
             case 2: this->definir_destino(); break;
             case 3: this->mostrar_suceso(); break;
             case 4: this->mensaje_de_ayuda(MENSAJE_AYUDA_DESTINO); break;
-            default: this->mensaje_de_ayuda(MENSAJE_ERROR);
         }
     } while (this->entrada_usuario != OPCION_SALIR);
 
